@@ -2,7 +2,6 @@
 #include <windows.h>
 using namespace std;
 
-// Changes colour of text
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 void greentext(){SetConsoleTextAttribute(hConsole, 2);  };
 void whitetext(){SetConsoleTextAttribute(hConsole, 15);  };
