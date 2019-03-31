@@ -7,7 +7,6 @@
 #include <ctime>
 using namespace std;
  
- 
 // Changes colour of text
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 int greentext(){SetConsoleTextAttribute(hConsole, 2);  };
@@ -253,10 +252,11 @@ void MemberForm(){
     cout << creditcard;
     whitetext();
     cout << "\n\t\t         Credit card Type: ";
-    if (creditcardType != "*****"){greentext();};
+    if(creditcard == "No"){
+        greentext();
+        creditcardType = "No";
+    }
     cout << creditcardType;
-    whitetext();
-    
     whitetext();
     cout << "\n\t________________________________________________________________\n\n";
     cout << "\n";
@@ -335,24 +335,22 @@ void memberDetails(){
     cout << "\tCould you have credit card? <Yes/No>";
     cin >> creditcard;
     MemberForm();
-    cout << "\tPlease enter Credit card Type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t4 - No\n> : ";
-    cin >> creditcardSelection;
+    if(creditcard == "Yes"){
+        cout << "\tPlease enter Credit card Type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t> : ";
+        cin >> creditcardSelection;
+        switch (creditcardSelection){
+            case 1 :
+                creditcardType = "GSB";
+                break;
+            case 2 :
+                creditcardType = "KTB";
+                break;
+            case 3 :
+                creditcardType = "SCB";
+                break;
+        }
+    }   
     
-    switch (creditcardSelection){
-    case 1 :
-        creditcardType = "GSB";
-        break;
-    case 2 :
-        creditcardType = "KTB";
-        break;
-    case 3 :
-        creditcardType = "SCB";
-        break;
-    case 4 :
-    	creditcardType = "No";
-    //default :
- 
-    };
     MemberForm();
     
     cout << "\tSave these details to a file? <Y/N> ";
