@@ -28,8 +28,12 @@ string address4 ("*****");
 string postcode ("*****");
 string tel ("00");
 string membershipType("*****");
+<<<<<<< HEAD
 int membershipSelection;
 string creditcard("****");
+=======
+string creditcard("****"); 
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
  
 // Global activity variables
 string activity ("*****");
@@ -59,7 +63,11 @@ void resetMemberDetails(){
      address4 = "*****";
      postcode = "*****";
      tel = "00";
+<<<<<<< HEAD
      creditcard="****";
+=======
+     creditcard = "****";
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
      membershipType   = "*****";
  
      activity = "*****";
@@ -110,13 +118,13 @@ double discount;
 int activityChoice;
 char confirmationSave;
  
-    if (membershipType == "Bronze"){
+    if (membershipType == "GSB"){
         discount = 0.9;
     };
-    if (membershipType == "Silver"){
+    if (membershipType == "KTB"){
         discount = 0.85;
     };
-    if (membershipType == "Gold"){
+    if (membershipType == "SCB"){
         discount = 0.6;
     };
     if (membershipType == "*****"){
@@ -146,9 +154,9 @@ char confirmationSave;
     if (activityChoice == 8){activity = "Five a Side Football"; activityPrice = fiveASide * discount;};
  
     // Free activity's for silver and gold members
-    if (activityChoice == 3 && membershipType == "Silver"){activityPrice = 0;};
-    if (activityChoice == 3 && membershipType == "Gold"){activityPrice = 0;};
-    if (activityChoice == 2 && membershipType == "Gold"){activityPrice = 0;};
+    if (activityChoice == 3 && membershipType == "GSB"){activityPrice = 0;};
+    if (activityChoice == 3 && membershipType == "KTB"){activityPrice = 0;};
+    if (activityChoice == 2 && membershipType == "SCB"){activityPrice = 0;};
  
     bookingForm();
  
@@ -245,15 +253,26 @@ void MemberForm(){
     whitetext();
     cout << "\n";
     cout << "\t________________________________________________________________\n\n";
+<<<<<<< HEAD
     
     cout<<"\n\t\t         credit card: ";
     if (creditcard != "****"){greentext();};
     cout <<creditcard;
+=======
+    cout << "\t\t           Credit card: ";
+    if (creditcard != "****"){greentext();};
+    cout << creditcard;
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
     whitetext();
     cout << "\n\t\t         Membership Type: ";
     if (membershipType != "*****"){greentext();};
     cout << membershipType;
     whitetext();
+<<<<<<< HEAD
+=======
+    
+    whitetext();
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
     cout << "\n\t________________________________________________________________\n\n";
     cout << "\n";
 };
@@ -274,7 +293,11 @@ void savefile(){
     myfile << address4 << "\n";
     myfile << postcode << "\n";
     myfile << tel<< "\n";
+<<<<<<< HEAD
     myfile<<creditcard<<"\n";
+=======
+    myfile << creditcard << "\n";
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
     myfile << membershipType << "\n";
     
     myfile.close();
@@ -331,6 +354,12 @@ void memberDetails(){
     cout << "\tCloud you have credit card? <Yes/No>";
     cin>>creditcard;
     MemberForm();
+<<<<<<< HEAD
+=======
+    cout << "\tCould you have credit card? <Yes/No>";
+    cin >> creditcard;
+    MemberForm();
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
     cout << "\tPlease enter membership type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t> : ";
     cin >> membershipSelection;
     while (cin.fail() || membershipSelection < 1 || membershipSelection >3){
