@@ -18,6 +18,7 @@ int main(){
         cout << "Do you want a parking spot during your stay? ";
         cin >> Parking;
         if (Parking == 'Y' || Parking == 'y'){
+
             parkingCost = 20;
             break;
         }
@@ -90,4 +91,33 @@ int main(){
    
 return 0;
 }
+
+
+
+
+char breakfast;
+    double breakfastCost ;
+    do {
+        bookingForm();
+        cout << "Enter 'Y' for yes or 'N' for no for the following optional services:\n";
+        cout << "Do you want a parking spot during your stay? "<<Parking<<"\n";
+        cout << "Do you want a high speed internet during your stay? "<<internet<<"\n";
+        cout << "Do you want to use of the fitness room during your stay? "<<fitness<<"\n";
+        cout << "Do you want a breakfast during your stay? ";
+        cin >> breakfast;
+        if (breakfast == 'Y' || breakfast == 'y'){
+            breakfastCost = 50;
+            Servicecharges4 = "breakfast = 50";
+            break;
+        }
+        else if (breakfast == 'N' || breakfast == 'n'){
+            breakfastCost = 0;
+            Servicecharges4 = "breakfast = -";
+            break;
+        }
+        else{
+            cout << "You entered an invalid answer. Please enter 'Y' for yes or 'N' for no.";
+        }
+        } while (   breakfast != 'Y' && breakfast != 'y' && breakfast != 'N' && breakfast != 'n');
+
 
