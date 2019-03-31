@@ -24,12 +24,12 @@ string address3 ("*****");
 string address4 ("*****");
 string postcode ("*****");
 string tel ("00");
-int membershipSelection;
-string membershipType("*****");
+int creditcardSelection;
+string creditcardType("*****");
 string creditcard("****"); 
 
 void resetMemberDetails(){
-    name =     "*****";
+     name =     "*****";
      surname =  "*****";
      address1 = 00;
      address2 = "*****";
@@ -38,7 +38,8 @@ void resetMemberDetails(){
      postcode = "*****";
      tel = "00";
      creditcard = "****";
-     membershipType   = "*****";
+     creditcardType   = "*****";
+ 
 }
 void MemberForm(){
  
@@ -86,16 +87,20 @@ void MemberForm(){
     if (creditcard != "****"){greentext();};
     cout << creditcard;
     whitetext();
-    cout << "\n\t\t         Membership Type: ";
-    if (membershipType != "*****"){greentext();};
-    cout << membershipType;
-    whitetext();
-    
+    cout << "\n\t\t         Credit card Type: ";
+    if(creditcard == "No"){
+        greentext();
+        creditcardType = "No";
+    }
+    if (creditcardType != "*****"){greentext();};
+    cout << creditcardType;
     whitetext();
     cout << "\n\t________________________________________________________________\n\n";
     cout << "\n";
 };
- void savefile(){
+ 
+// Save function for saving member details to a file
+void savefile(){
     string saveFileName;
     stringstream out;
     out << name << " " << surname;
@@ -111,7 +116,7 @@ void MemberForm(){
     myfile << postcode << "\n";
     myfile << tel<< "\n";
     myfile << creditcard << "\n";
-    myfile << membershipType << "\n";
+    myfile << creditcardType << "\n";
     
     myfile.close();
     MemberForm();
@@ -120,7 +125,8 @@ void MemberForm(){
     whitetext();
     system ("pause");
     }
-    // Main Menu choice 1
+ 
+// Main Menu choice 1
 void memberDetails(){
  
     char saveYN;
@@ -153,37 +159,36 @@ void memberDetails(){
     cin >> ws;
     getline (cin, postcode);
     MemberForm();
-    cout << "\tPlease enter Daytime Telephone Number: ";
+    cout << "\tPlease enter Telephone Number: ";
     //cin >> ws;
     getline (cin, tel);
     while (cin.fail()){ //Handles character in integer variable
         cin.clear();
         cin.ignore();
-        cout << "\tPlease enter Daytime Telephone Number: ";
+        cout << "\tPlease enter Telephone Number: ";
         cin >> tel;
     };
-    MemberForm();
-    cout << "\tPlease enter Evening Telephone Number: ";
-    //cin >> ws;
     MemberForm();
     cout << "\tCould you have credit card? <Yes/No>";
     cin >> creditcard;
     MemberForm();
-    cout << "\tPlease enter membership type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t> : ";
-    cin >> membershipSelection;
-    switch (membershipSelection){
-    case 1 :
-        membershipType = "GSB";
-        break;
-    case 2 :
-        membershipType = "KTB";
-        break;
-    case 3 :
-        membershipType = "SCB";
-        break;
-    //default :
- 
-    };
+    if(creditcard == "Yes"){
+        cout << "\tPlease enter Credit card Type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t> : ";
+        cin >> creditcardSelection;
+        
+        switch (creditcardSelection){
+            case 1 :
+                creditcardType = "GSB";
+                break;
+            case 2 :
+                creditcardType = "KTB";
+                break;
+            case 3 :
+                creditcardType = "SCB";
+                break;
+        }
+    }   
+    
     MemberForm();
     
     cout << "\tSave these details to a file? <Y/N> ";
