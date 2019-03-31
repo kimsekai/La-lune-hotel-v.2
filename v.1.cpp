@@ -19,20 +19,14 @@ int darktext (){SetConsoleTextAttribute(hConsole, 8);  };
 // Global Variables that need to be accessible throughout the different functions
  
 bool MenuLoop = true;
-string name ("*****");    //Strings have default values so that the form can
-string surname ("*****"); //be displayed with incomplete fields.
+string name ("*****");    
+string surname ("*****");
 int address1 (00);
 string address2 ("*****");
 string address3 ("*****");
 string address4 ("*****");
 string postcode ("*****");
 string tel ("00");
-int startDate(00);
-int startMonth (00);
-int startYear(00);
-int endDate(00);
-int endMonth(00);
-int endYear(00);
 int membershipSelection;
 string membershipType("*****");
 string creditcard("****"); 
@@ -349,15 +343,7 @@ void memberDetails(){
     MemberForm();
     cout << "\tPlease enter membership type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t> : ";
     cin >> membershipSelection;
-    while (cin.fail() || membershipSelection < 1 || membershipSelection >3){
- 
-        cin.clear();
-        cin.ignore();           //Handles invalid membership selection
- 
- 
-        cout << "\n\tPlease enter a valid membership type.\n\t1 - GSB - 10.00 Per month\n\t2 - KTB - 15.00 Per month\n\t3 - SCB  - 20.00 Per month\n\t> : ";
-        cin >> membershipSelection;
-    };
+    
     switch (membershipSelection){
     case 1 :
         membershipType = "GSB";
