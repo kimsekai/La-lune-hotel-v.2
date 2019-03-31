@@ -96,12 +96,6 @@ void welcome(){
     cout << "\t\t      press enter in order to approach Main menu... ";
     cin.get(); 
 }
-
-
-
-
- 
-
 int main(){
     welcome();
      while (MenuLoop == true){mainMenu();};      //Main menu loop
