@@ -27,15 +27,13 @@ string address3 ("*****");
 string address4 ("*****");
 string postcode ("*****");
 string tel ("00");
-int startDate(00);
-int startMonth (00);
-int startYear(00);
-int endDate(00);
-int endMonth(00);
-int endYear(00);
-int membershipSelection;
 string membershipType("*****");
+<<<<<<< HEAD
+int membershipSelection;
+string creditcard("****");
+=======
 string creditcard("****"); 
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
  
 // Global activity variables
 string activity ("*****");
@@ -65,7 +63,11 @@ void resetMemberDetails(){
      address4 = "*****";
      postcode = "*****";
      tel = "00";
+<<<<<<< HEAD
+     creditcard="****";
+=======
      creditcard = "****";
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
      membershipType   = "*****";
  
      activity = "*****";
@@ -211,7 +213,6 @@ char confirmationSave;
  
 // Membership Form that displays membership variables
 void MemberForm(){
- 
     system ("cls");
     bluetext();
     cout << "\t\t\t      Member Details\n";
@@ -252,16 +253,26 @@ void MemberForm(){
     whitetext();
     cout << "\n";
     cout << "\t________________________________________________________________\n\n";
+<<<<<<< HEAD
+    
+    cout<<"\n\t\t         credit card: ";
+    if (creditcard != "****"){greentext();};
+    cout <<creditcard;
+=======
     cout << "\t\t           Credit card: ";
     if (creditcard != "****"){greentext();};
     cout << creditcard;
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
     whitetext();
     cout << "\n\t\t         Membership Type: ";
     if (membershipType != "*****"){greentext();};
     cout << membershipType;
     whitetext();
+<<<<<<< HEAD
+=======
     
     whitetext();
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
     cout << "\n\t________________________________________________________________\n\n";
     cout << "\n";
 };
@@ -282,7 +293,11 @@ void savefile(){
     myfile << address4 << "\n";
     myfile << postcode << "\n";
     myfile << tel<< "\n";
+<<<<<<< HEAD
+    myfile<<creditcard<<"\n";
+=======
     myfile << creditcard << "\n";
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
     myfile << membershipType << "\n";
     
     myfile.close();
@@ -326,22 +341,25 @@ void memberDetails(){
     cin >> ws;
     getline (cin, postcode);
     MemberForm();
-    cout << "\tPlease enter Daytime Telephone Number: ";
+    cout << "\tPlease enter Telephone Number: ";
     //cin >> ws;
     getline (cin, tel);
     while (cin.fail()){ //Handles character in integer variable
         cin.clear();
         cin.ignore();
-        cout << "\tPlease enter Daytime Telephone Number: ";
+        cout << "\tPlease enter Telephone Number: ";
         cin >> tel;
     };
     MemberForm();
-    cout << "\tPlease enter Evening Telephone Number: ";
-    //cin >> ws;
+    cout << "\tCloud you have credit card? <Yes/No>";
+    cin>>creditcard;
     MemberForm();
+<<<<<<< HEAD
+=======
     cout << "\tCould you have credit card? <Yes/No>";
     cin >> creditcard;
     MemberForm();
+>>>>>>> c60f726420acf312a1a0cc53f84edc47cffebfbc
     cout << "\tPlease enter membership type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t> : ";
     cin >> membershipSelection;
     while (cin.fail() || membershipSelection < 1 || membershipSelection >3){
