@@ -7,6 +7,7 @@
 #include <ctime>
 using namespace std;
  
+ 
 // Changes colour of text
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 int greentext(){SetConsoleTextAttribute(hConsole, 2);  };
@@ -27,8 +28,8 @@ string address3 ("*****");
 string address4 ("*****");
 string postcode ("*****");
 string tel ("00");
-int membershipSelection;
-string membershipType("*****");
+int creditcardSelection;
+string creditcardType("*****");
 string creditcard("****"); 
  
 // Global activity variables
@@ -60,7 +61,7 @@ void resetMemberDetails(){
      postcode = "*****";
      tel = "00";
      creditcard = "****";
-     membershipType   = "*****";
+     creditcardType   = "*****";
  
      activity = "*****";
      activityDate = 00;
@@ -85,8 +86,8 @@ void bookingForm(){
     cout << surname << "\n";
     whitetext();
     cout << "\n\t\t         Membership Type: ";
-    if (membershipType != "*****"){greentext();};
-    cout << membershipType;
+    if (creditcardType != "*****"){greentext();};
+    cout << creditcardType;
     whitetext();
     cout << "\n\t\t                Activity: ";
     if (activity != "*****"){greentext();};
@@ -110,16 +111,16 @@ double discount;
 int activityChoice;
 char confirmationSave;
  
-    if (membershipType == "GSB"){
+    if (creditcardType == "GSB"){
         discount = 0.9;
     };
-    if (membershipType == "KTB"){
+    if (creditcardType == "KTB"){
         discount = 0.85;
     };
-    if (membershipType == "SCB"){
+    if (creditcardType == "SCB"){
         discount = 0.6;
     };
-    if (membershipType == "*****"){
+    if (creditcardType == "No"){
         discount = 1.0;
     };
  
@@ -147,9 +148,9 @@ char confirmationSave;
     if (activityChoice == 8){activity = "Five a Side Football"; activityPrice = fiveASide * discount;};
  
     // Free activity's for silver and gold members
-    if (activityChoice == 3 && membershipType == "GSB"){activityPrice = 0;};
-    if (activityChoice == 3 && membershipType == "KTB"){activityPrice = 0;};
-    if (activityChoice == 2 && membershipType == "SCB"){activityPrice = 0;};
+    if (activityChoice == 3 && creditcardType == "GSB"){activityPrice = 0;};
+    if (activityChoice == 3 && creditcardType == "KTB"){activityPrice = 0;};
+    if (activityChoice == 2 && creditcardType == "SCB"){activityPrice = 0;};
  
     bookingForm();
  
@@ -179,7 +180,7 @@ char confirmationSave;
     cout << "Is this information correct? <Y/N>";
     cin >> confirmationSave;
     if (confirmationSave == 'y' || confirmationSave == 'Y') {
- 
+
     string saveBookingName;
     stringstream out;
     out << name << " " << surname << ".booking";
@@ -189,7 +190,7 @@ char confirmationSave;
     myfile.open (saveBookingName.c_str(), ios::out);
     myfile << name << "\n";
     myfile << surname << "\n";
-    myfile << membershipType << "\n";
+    myfile << creditcardType << "\n";
     myfile << activity << "\n";
     myfile << activityDate << "\n";
     myfile << activityMonth << "\n";
@@ -250,14 +251,10 @@ void MemberForm(){
     cout << "\t\t           Credit card: ";
     if (creditcard != "****"){greentext();};
     cout << creditcard;
-    if (creditcard == "No"){
-        greentext();
-        membershipType = "-";
-    }
     whitetext();
-    cout << "\n\t\t         Membership Type: ";
-    if (membershipType != "*****"){greentext();};
-    cout << membershipType;
+    cout << "\n\t\t         Credit card Type: ";
+    if (creditcardType != "*****"){greentext();};
+    cout << creditcardType;
     whitetext();
     
     whitetext();
@@ -282,7 +279,7 @@ void savefile(){
     myfile << postcode << "\n";
     myfile << tel<< "\n";
     myfile << creditcard << "\n";
-    myfile << membershipType << "\n";
+    myfile << creditcardType << "\n";
     
     myfile.close();
     MemberForm();
@@ -325,35 +322,34 @@ void memberDetails(){
     cin >> ws;
     getline (cin, postcode);
     MemberForm();
-    cout << "\tPlease enter Daytime Telephone Number: ";
+    cout << "\tPlease enter Telephone Number: ";
     //cin >> ws;
     getline (cin, tel);
     while (cin.fail()){ //Handles character in integer variable
         cin.clear();
         cin.ignore();
-        cout << "\tPlease enter Daytime Telephone Number: ";
+        cout << "\tPlease enter Telephone Number: ";
         cin >> tel;
     };
-    MemberForm();
-    cout << "\tPlease enter Evening Telephone Number: ";
-    //cin >> ws;
     MemberForm();
     cout << "\tCould you have credit card? <Yes/No>";
     cin >> creditcard;
     MemberForm();
-    cout << "\tPlease enter membership type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t> : ";
-    cin >> membershipSelection;
+    cout << "\tPlease enter Credit card Type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t4 - No\n> : ";
+    cin >> creditcardSelection;
     
-    switch (membershipSelection){
+    switch (creditcardSelection){
     case 1 :
-        membershipType = "GSB";
+        creditcardType = "GSB";
         break;
     case 2 :
-        membershipType = "KTB";
+        creditcardType = "KTB";
         break;
     case 3 :
-        membershipType = "SCB";
+        creditcardType = "SCB";
         break;
+    case 4 :
+    	creditcardType = "No";
     //default :
  
     };
@@ -401,8 +397,8 @@ void createBooking(){
         getline(file_ptr, address4);
         getline(file_ptr, postcode);
         getline(file_ptr, tel);
-        getline(file_ptr, membershipType); // Duplicate required to eliminate
-        getline(file_ptr, membershipType); // empty field bug when using string after integer.
+        getline(file_ptr, creditcardType); // Duplicate required to eliminate
+        getline(file_ptr, creditcardType); // empty field bug when using string after integer.
  
 
         MemberForm();
@@ -467,8 +463,8 @@ void openFile(){
         getline(file_ptr, address4);
         getline(file_ptr, postcode);
         getline(file_ptr, tel);
-        getline(file_ptr, membershipType); // Duplicate required to eliminate
-        getline(file_ptr, membershipType); // empty field bug when using string after integer.
+        getline(file_ptr, creditcardType); // Duplicate required to eliminate
+        getline(file_ptr, creditcardType); // empty field bug when using string after integer.
         MemberForm();
         greentext();
         whitetext();
@@ -505,8 +501,8 @@ void openFile(){
         getline(file_ptr, name);
         getline(file_ptr, surname);
  
-        getline(file_ptr, membershipType); // Duplicate required to eliminate
-        //getline(file_ptr, membershipType); // empty field bug when using string after integer.
+        getline(file_ptr, creditcardType); // Duplicate required to eliminate
+        //getline(file_ptr, creditcardType); // empty field bug when using string after integer.
         getline(file_ptr, activity);
         file_ptr >> activityDate;
         file_ptr >> activityMonth;
