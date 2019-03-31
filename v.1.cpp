@@ -672,6 +672,7 @@ void password(){
                 exit(0);
         };
  
+ 
         whitetext();
         cout << "\t\t\t\tTry Again:\n\t\t\t\t>";
         cin >> pass;
