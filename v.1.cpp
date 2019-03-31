@@ -255,6 +255,10 @@ void MemberForm(){
     cout << "\t\t           Credit card: ";
     if (creditcard != "****"){greentext();};
     cout << creditcard;
+    if (creditcard == "No"){
+        greentext();
+        membershipType = "-";
+    }
     whitetext();
     cout << "\n\t\t         Membership Type: ";
     if (membershipType != "*****"){greentext();};
@@ -413,6 +417,7 @@ void createBooking(){
         getline(file_ptr, membershipType); // Duplicate required to eliminate
         getline(file_ptr, membershipType); // empty field bug when using string after integer.
  
+
         MemberForm();
  
         greentext();
