@@ -26,8 +26,7 @@ string address2 ("*****");
 string address3 ("*****");
 string address4 ("*****");
 string postcode ("*****");
-string telDay ("00");
-string telEve("00");
+string tel ("00");
 int startDate(00);
 int startMonth (00);
 int startYear(00);
@@ -66,14 +65,8 @@ void resetMemberDetails(){
      address3 = "*****";
      address4 = "*****";
      postcode = "*****";
-     startDate  = 00;
-     startMonth = 00;
-     startYear  = 00;
-     endDate  = 00;
-     endMonth = 00;
-     endYear  = 00;
-     telDay = "00";
-     telEve = "00";
+     tel = "00";
+     
      membershipNumber = 00;
      membershipType   = "*****";
      memberNotes      = "*****";
@@ -256,35 +249,11 @@ void MemberForm(){
     if (postcode != "*****"){greentext();};
     cout << postcode << "\n";
     whitetext();
-    cout << "\t\t\t   Day Telephone: ";
-    if (telDay != "00"){greentext();};
-    cout << telDay;
+    cout << "\t\t\t   Telephone: ";
+    if (tel != "00"){greentext();};
+    cout << tel;
     whitetext();
-    cout << "\n\t\t       Evening Telephone: ";
-    if (telEve != "00"){greentext();};
-    cout << telEve << "\n";
-    whitetext();
-        cout << "\t\t\t      Start date: ";
-    if (startDate != 00){greentext();};
-    cout << startDate << "/";
-    whitetext();
-    if (startMonth != 00){greentext();};
-    cout << startMonth << "/";
-    whitetext();
-    if (startYear != 00){greentext();};
-    cout << startYear;
-    whitetext();
-    cout << "\tEnd date: ";
-    whitetext();
-    if (endDate != 00){greentext();};
-    cout << endDate << "/";
-    whitetext();
-    if (endMonth != 00){greentext();};
-    cout << endMonth << "/";
-    whitetext();
-    if (endYear != 00){greentext();};
-    cout << endYear << "\n";
-    whitetext();
+    cout << "\n";
     cout << "\t________________________________________________________________\n\n";
     cout << "\t\t       Membership number: ";
     if (membershipNumber != 00){greentext();};
@@ -317,14 +286,7 @@ void savefile(){
     myfile << address3 << "\n";
     myfile << address4 << "\n";
     myfile << postcode << "\n";
-    myfile << telDay << "\n";
-    myfile << telEve << "\n";
-    myfile << startDate << "\n";
-    myfile << startMonth << "\n";
-    myfile << startYear << "\n";
-    myfile << endDate << "\n";
-    myfile << endMonth << "\n";
-    myfile << endYear << "\n";
+    myfile << tel<< "\n";
     myfile << membershipNumber << "\n";
     myfile << membershipType << "\n";
     myfile << memberNotes << "\n";
@@ -371,66 +333,16 @@ void memberDetails(){
     MemberForm();
     cout << "\tPlease enter Daytime Telephone Number: ";
     //cin >> ws;
-    getline (cin, telDay);
+    getline (cin, tel);
     while (cin.fail()){ //Handles character in integer variable
         cin.clear();
         cin.ignore();
         cout << "\tPlease enter Daytime Telephone Number: ";
-        cin >> telDay;
+        cin >> tel;
     };
     MemberForm();
     cout << "\tPlease enter Evening Telephone Number: ";
     //cin >> ws;
-    getline (cin, telEve);
-    while (cin.fail()){
-        cin.clear();
-        cin.ignore();
-        cout << "\tPlease enter Evening Telephone Number: ";
-        cin >> telEve;
-    };
-    MemberForm();
-    cout << "\tPlease enter Membership Start Date(DD): ";
-    cin >> startDate;
-    while (cin.fail() || startDate > 31 || startDate < 1){//Catches invalid date
-        cin.clear(); cin.ignore();
-        cout << "\n\tPlease enter a valid date (1-31): ";
-        cin >> startDate;
-    };
-    MemberForm();
-    cout << "\tPlease enter Membership Start Month(MM): ";
-    cin >> startMonth;
-    while (cin.fail() || startMonth > 12 || startMonth < 1){//Catches invalid month
-        cin.clear(); cin.ignore();
-        cout << "\n\tPlease enter a valid month (1-12): ";
-        cin >> startMonth;}
-    MemberForm();
-    cout << "\tPlease enter Membership Start Year(YY): ";
-    cin >> startYear;
-    while (cin.fail() || startYear > 99 || startYear < 1){//Catches invalid year
-        cin.clear(); cin.ignore();
-        cout << "\n\tPlease enter a valid Year (1-99): ";
-        cin >> startYear;}
-    MemberForm();
-    cout << "\tPlease enter Membership End Date(DD): ";
-    cin >> endDate;
-    while (cin.fail() || endDate > 31 || endDate < 1){
-        cin.clear(); cin.ignore();
-        cout << "\n\tPlease enter a valid date (1-31): ";
-        cin >> endDate;}
-    MemberForm();
-    cout << "\tPlease enter Membership End Month(MM): ";
-    cin >> endMonth;
-    while (cin.fail() || endMonth > 12 || endMonth < 1){
-        cin.clear(); cin.ignore();
-        cout << "\n\tPlease enter a valid month (1-12): ";
-        cin >> endMonth;}
-    MemberForm();
-    cout << "\tPlease enter Membership End Year(YY): ";
-    cin >> endYear;
-    while (cin.fail() || endYear > 99 || endYear < 1){
-        cin.clear(); cin.ignore();
-        cout << "\n\tPlease enter a valid year (1-99): ";
-        cin >> endYear;}
     MemberForm();
     cout << "\tEnter 6 Digit membership card number: ";
     cin >> membershipNumber;
@@ -510,16 +422,7 @@ void createBooking(){
         getline(file_ptr, address3);
         getline(file_ptr, address4);
         getline(file_ptr, postcode);
-        getline(file_ptr, telDay);
-        getline(file_ptr, telEve);
-        //file_ptr >> telDay;
-        //file_ptr >> telEve;
-        file_ptr >> startDate>>
-        startMonth>>
-        startYear>>
-        endDate>>
-        endMonth>>
-        endYear>>
+        getline(file_ptr, tel);
         membershipNumber;
         getline(file_ptr, membershipType); // Duplicate required to eliminate
         getline(file_ptr, membershipType); // empty field bug when using string after integer.
@@ -586,16 +489,7 @@ void openFile(){
         getline(file_ptr, address3);
         getline(file_ptr, address4);
         getline(file_ptr, postcode);
-        getline(file_ptr, telDay);
-        getline(file_ptr, telEve);
-        //file_ptr >> telDay;
-        //file_ptr >> telEve;
-        file_ptr >> startDate>>
-        startMonth>>
-        startYear>>
-        endDate>>
-        endMonth>>
-        endYear>>
+        getline(file_ptr, tel);
         membershipNumber;
         getline(file_ptr, membershipType); // Duplicate required to eliminate
         getline(file_ptr, membershipType); // empty field bug when using string after integer.
