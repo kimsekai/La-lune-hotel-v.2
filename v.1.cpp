@@ -35,6 +35,7 @@ int endMonth(00);
 int endYear(00);
 int membershipSelection;
 string membershipType("*****");
+string creditcard("****"); 
  
 // Global activity variables
 string activity ("*****");
@@ -64,7 +65,7 @@ void resetMemberDetails(){
      address4 = "*****";
      postcode = "*****";
      tel = "00";
-     
+     creditcard = "****";
      membershipType   = "*****";
  
      activity = "*****";
@@ -115,13 +116,13 @@ double discount;
 int activityChoice;
 char confirmationSave;
  
-    if (membershipType == "Bronze"){
+    if (membershipType == "GSB"){
         discount = 0.9;
     };
-    if (membershipType == "Silver"){
+    if (membershipType == "KTB"){
         discount = 0.85;
     };
-    if (membershipType == "Gold"){
+    if (membershipType == "SCB"){
         discount = 0.6;
     };
     if (membershipType == "*****"){
@@ -151,9 +152,9 @@ char confirmationSave;
     if (activityChoice == 8){activity = "Five a Side Football"; activityPrice = fiveASide * discount;};
  
     // Free activity's for silver and gold members
-    if (activityChoice == 3 && membershipType == "Silver"){activityPrice = 0;};
-    if (activityChoice == 3 && membershipType == "Gold"){activityPrice = 0;};
-    if (activityChoice == 2 && membershipType == "Gold"){activityPrice = 0;};
+    if (activityChoice == 3 && membershipType == "GSB"){activityPrice = 0;};
+    if (activityChoice == 3 && membershipType == "KTB"){activityPrice = 0;};
+    if (activityChoice == 2 && membershipType == "SCB"){activityPrice = 0;};
  
     bookingForm();
  
@@ -251,13 +252,14 @@ void MemberForm(){
     whitetext();
     cout << "\n";
     cout << "\t________________________________________________________________\n\n";
-    
+    cout << "\t\t           Credit card: ";
+    if (creditcard != "****"){greentext();};
+    cout << creditcard;
     whitetext();
     cout << "\n\t\t         Membership Type: ";
     if (membershipType != "*****"){greentext();};
     cout << membershipType;
     whitetext();
-    cout << "\n\n\tNotes: ";
     
     whitetext();
     cout << "\n\t________________________________________________________________\n\n";
@@ -280,7 +282,7 @@ void savefile(){
     myfile << address4 << "\n";
     myfile << postcode << "\n";
     myfile << tel<< "\n";
-    
+    myfile << creditcard << "\n";
     myfile << membershipType << "\n";
     
     myfile.close();
@@ -337,7 +339,9 @@ void memberDetails(){
     cout << "\tPlease enter Evening Telephone Number: ";
     //cin >> ws;
     MemberForm();
-    
+    cout << "\tCould you have credit card? <Yes/No>";
+    cin >> creditcard;
+    MemberForm();
     cout << "\tPlease enter membership type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t> : ";
     cin >> membershipSelection;
     while (cin.fail() || membershipSelection < 1 || membershipSelection >3){
