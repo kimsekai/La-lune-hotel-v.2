@@ -171,15 +171,6 @@ void memberDetails(){
     MemberForm();
     cout << "\tPlease enter membership type:\n\t1 - GSB\n\t2 - KTB\n\t3 - SCB\n\t> : ";
     cin >> membershipSelection;
-    while (cin.fail() || membershipSelection < 1 || membershipSelection >3){
- 
-        cin.clear();
-        cin.ignore();           //Handles invalid membership selection
- 
- 
-        cout << "\n\tPlease enter a valid membership type.\n\t1 - GSB - 10.00 Per month\n\t2 - KTB - 15.00 Per month\n\t3 - SCB  - 20.00 Per month\n\t> : ";
-        cin >> membershipSelection;
-    };
     switch (membershipSelection){
     case 1 :
         membershipType = "GSB";
