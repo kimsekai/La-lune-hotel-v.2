@@ -19,20 +19,14 @@ int darktext (){SetConsoleTextAttribute(hConsole, 8);  };
 // Global Variables that need to be accessible throughout the different functions
  
 bool MenuLoop = true;
-string name ("*****");    //Strings have default values so that the form can
-string surname ("*****"); //be displayed with incomplete fields.
+string name ("*****");    
+string surname ("*****");
 int address1 (00);
 string address2 ("*****");
 string address3 ("*****");
 string address4 ("*****");
 string postcode ("*****");
 string tel ("00");
-int startDate(00);
-int startMonth (00);
-int startYear(00);
-int endDate(00);
-int endMonth(00);
-int endYear(00);
 int membershipSelection;
 string membershipType("*****");
 string creditcard("****"); 
