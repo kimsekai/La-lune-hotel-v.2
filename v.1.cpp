@@ -129,6 +129,7 @@ char confirmationSave;
         discount = 1.0;
     };
  
+ 
     bookingForm();
     cout << "Please select an activity:\n\n";
     cout << "1 - Sports Hall\n";
