@@ -1,10 +1,10 @@
 #include <iostream>
-#include <string>
 #include <stdlib.h>
 #include <windows.h>
 #include <sstream>
 #include <fstream>
-#include <ctime>
+#include <string>
+
 using namespace std;
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -15,49 +15,65 @@ void bluetext (){SetConsoleTextAttribute(hConsole, 11);  };
 void yellowtext (){SetConsoleTextAttribute(hConsole, 14);  };
 void darktext (){SetConsoleTextAttribute(hConsole, 8);  };
 
+
+
+ 
+// Global activity variables
+string Servicecharges1 ("*****");
+string Servicecharges2 ("*****");
+string Servicecharges3 ("*****");
+string Servicecharges4 ("*****");
+int checkinDate(00);
+int checkinMonth(00);
+int checkinYear(00);
+int checkoutDate(00);
+int checkoutMonth(00);
+int checkoutYear(00);
+double TotalPrice(0.00);
+double TotalServicecharges(0.00);
+ 
 bool MenuLoop = true;
-string name ("*****");    
-string surname ("*****");
-int address1 (00);
-string address2 ("*****");
-string address3 ("*****");
-string address4 ("*****");
-string postcode ("*****");
-string tel ("00");
+string name("*****");    
+string surname("*****");
+int address1(00);
+string address2("*****");
+string address3("*****");
+string address4("*****");
+string postcode("*****");
+string tel("00");
 int creditcardSelection;
 string creditcardType("*****");
 string creditcard("****"); 
 
 void resetMemberDetails(){
-     name =     "*****";
-     surname =  "*****";
-     address1 = 00;
-     address2 = "*****";
-     address3 = "*****";
-     address4 = "*****";
-     postcode = "*****";
-     tel = "00";
-     creditcard = "****";
-     creditcardType   = "*****";
+    name = "*****";
+    surname = "*****";
+    address1 = 00;
+    address2 = "*****";
+    address3 = "*****";
+    address4 = "*****";
+    postcode = "*****";
+    tel = "00";
+    creditcard = "****";
+    creditcardType = "*****";
  
 }
 void MemberForm(){
- 
     system ("cls");
     bluetext();
-    cout << "\t\t\t      Member Details\n";
+    cout << "\n\t\t\t      Member Details\n";
     whitetext();
     cout << "\t________________________________________________________________\n\n";
     cout << "\tMember Form   \t";
-    cout << "\t  Member: ";
-    if (name != "*****"){greentext();};   // If the field is not the default
-    cout << name << " ";                  // value use green text, then
-    whitetext();                          // revert back to white text.
+    cout << "\t  Member : ";
+    if (name != "*****"){greentext();};   
+    cout << name << " ";                  
+    whitetext();                          
     if (surname != "*****"){greentext();};
     cout << surname << "\n";
     whitetext();
     cout << "\t\t\t";
-    cout << "\t Address: ";
+    cout << "\t Address : ";
     if (address1 != 00){greentext();};
     cout << address1 << " ";
     whitetext();
@@ -77,17 +93,17 @@ void MemberForm(){
     if (postcode != "*****"){greentext();};
     cout << postcode << "\n";
     whitetext();
-    cout << "\t\t\t   Telephone: ";
+    cout << "\t\t\t   Telephone : ";
     if (tel != "00"){greentext();};
     cout << tel;
     whitetext();
     cout << "\n";
     cout << "\t________________________________________________________________\n\n";
-    cout << "\t\t           Credit card: ";
+    cout << "\t\t           Credit card : ";
     if (creditcard != "****"){greentext();};
     cout << creditcard;
     whitetext();
-    cout << "\n\t\t         Credit card Type: ";
+    cout << "\n\t\t         Credit card Type : ";
     if(creditcard == "No"){
         greentext();
         creditcardType = "No";
@@ -98,14 +114,13 @@ void MemberForm(){
     cout << "\n\t________________________________________________________________\n\n";
     cout << "\n";
 };
- 
-// Save function for saving member details to a file
+
 void savefile(){
     string saveFileName;
     stringstream out;
     out << name << " " << surname;
     saveFileName = out.str();
-    ofstream myfile;                                  //Save file structure
+    ofstream myfile;                                  
     myfile.open (saveFileName.c_str(), ios::out);
     myfile << name << "\n";
     myfile << surname << "\n";
@@ -117,7 +132,6 @@ void savefile(){
     myfile << tel<< "\n";
     myfile << creditcard << "\n";
     myfile << creditcardType << "\n";
-    
     myfile.close();
     MemberForm();
     greentext();
@@ -125,51 +139,248 @@ void savefile(){
     whitetext();
     system ("pause");
     }
+
  
-// Main Menu choice 1
+void bookingForm(){
+    system ("cls");
+    bluetext();
+    cout << "\t\t\t      Booking Details\n";
+    whitetext();
+    cout << "\t________________________________________________________________\n\n";
+    cout << "\tBooking Form   \t";
+    cout << "\t  Member: ";
+    if (name != "*****"){greentext();};   // If the field is not the default
+    cout << name << " ";                  // value use green text, then
+    whitetext();                          // revert back to white text.
+    if (surname != "*****"){greentext();};
+    cout << surname << "\n";
+     whitetext();
+    cout << "\n\t\t         Creditcard : ";
+    if (creditcard  != "*****"){greentext();};
+    cout << creditcard ;
+    whitetext();
+    cout << "\n\t\t         Creditcard Type: ";
+    if (creditcardType  != "*****"){greentext();};
+    cout << creditcardType ;
+    whitetext();
+    cout << "\n\t\t                Service charges: ";
+    if (Servicecharges1 != "*****"){greentext();};
+    cout << Servicecharges1;
+    if (Servicecharges2 != "*****"){greentext();};
+    cout <<"\n\t\t                                 "<<Servicecharges2;
+    if (Servicecharges3 != "*****"){greentext();};
+    cout <<"\n\t\t                                 "<<Servicecharges3;
+    if (Servicecharges4 != "*****"){greentext();};
+    cout <<"\n\t\t                                 "<<Servicecharges4;
+    whitetext();
+        cout << "\n\t\t          Total Service charges: ";
+    if (TotalServicecharges != 00.00){greentext();};
+    cout << TotalServicecharges;
+    whitetext();
+        cout << "\n\t\t           Check in Date: ";
+    if (checkinDate != 00){greentext();};
+    cout << checkinDate << "/" << checkinMonth << "/" << checkinYear;
+    whitetext();
+        cout << "\n\t\t           Check out Date: ";
+    if (checkoutDate != 00){greentext();};
+    cout << checkoutDate << "/" << checkoutMonth << "/" << checkoutYear;
+    whitetext();
+        cout << "\n\t\t          Total Price: ";
+    if (TotalPrice != 00.00){greentext();};
+    cout << TotalPrice;
+    whitetext();
+    cout << "\n\t________________________________________________________________\n\n";
+    cout << "\n";
+};    
+void bookingScript(){
+    double discount;
+    if (creditcardType == "GSB"){
+        discount = 0.9;
+    };
+    if (creditcardType == "KTB"){
+        discount = 0.85;
+    };
+    if (creditcardType == "SCB"){
+        discount = 0.6;
+    };
+    if (creditcardType == "No"){
+        discount = 1.0;
+    };
+     bookingForm();
+
+    char Parking ;
+    double parkingCost ;
+    do {
+        bookingForm();
+        cout << "Enter 'Y' for yes or 'N' for no for the following optional services:\n";
+        cout << "Do you want a parking spot during your stay? ";
+        cin >> Parking;
+        if (Parking == 'Y' || Parking == 'y'){
+            parkingCost = 20;
+            Servicecharges1 = "a parking spot during your stay = 20";
+            TotalServicecharges = parkingCost;
+            break;
+        }
+        else if (Parking == 'N' || Parking == 'n'){
+            parkingCost = 0;
+            Servicecharges1 ="a parking spot during your stay = - ";
+            TotalServicecharges = 0;
+            break;
+        }
+        else{
+            cout << "You entered an invalid answer. Please enter 'Y' for yes or 'N' for no.\n";
+        }
+        }while (Parking != 'Y' && Parking != 'y' && Parking != 'N' && Parking != 'n');
+
+
+    char internet;
+    double internetCost ;
+    do {
+        bookingForm();
+        cout << "Enter 'Y' for yes or 'N' for no for the following optional services:\n";
+        cout << "Do you want a parking spot during your stay? "<<Parking<<"\n";
+        cout << "Do you want a high speed internet during your stay? ";
+        cin >> internet;
+        if (internet == 'Y' || internet == 'y'){
+            internetCost = 50;
+            Servicecharges2 = "high speed internet = 50";
+            if(TotalServicecharges = parkingCost){
+                TotalServicecharges = parkingCost+internetCost;
+            }else{
+                TotalServicecharges = internetCost;
+            }
+            break;
+        }
+        else if (internet == 'N' || internet == 'n'){
+            internetCost = 0;
+            Servicecharges2 = "high speed internet = -";
+            if(TotalServicecharges = parkingCost){
+                TotalServicecharges = parkingCost;
+            }else{
+                TotalServicecharges = 0;
+            };
+            
+            break;
+        }
+        else{
+            cout << "You entered an invalid answer. Please enter 'Y' for yes or 'N' for no.";
+        } 
+        }while (   internet != 'Y' && internet != 'y' && internet != 'N' && internet != 'n');
+
+
+    char fitness;
+    double fitnessCost ;
+    do {
+        bookingForm();
+        cout << "Enter 'Y' for yes or 'N' for no for the following optional services:\n";
+        cout << "Do you want a parking spot during your stay? "<<Parking<<"\n";
+        cout << "Do you want a high speed internet during your stay? "<<internet<<"\n";
+        cout << "Do you want to use of the fitness room during your stay? ";
+        cin >> fitness;
+        if (fitness == 'Y' || fitness == 'y'){
+            fitnessCost = 20;
+            Servicecharges3 ="fitness room = 20";
+             if(TotalServicecharges = parkingCost+internetCost){
+                TotalServicecharges = parkingCost+internetCost+fitnessCost;
+            }else if(TotalServicecharges = parkingCost){
+                TotalServicecharges = parkingCost+fitnessCost;
+            }else if(TotalServicecharges = internetCost){
+                TotalServicecharges = internetCost+fitnessCost;
+            }else{
+                TotalServicecharges = fitnessCost;
+            }
+            break;
+        }
+        else if (fitness == 'N' || fitness == 'n'){
+            fitnessCost = 0;
+            Servicecharges3 ="fitness room = -";
+             if(TotalServicecharges = parkingCost+internetCost){
+                TotalServicecharges = parkingCost+internetCost;
+            }else if(TotalServicecharges = parkingCost){
+                TotalServicecharges = parkingCost;
+            }else if(TotalServicecharges = internetCost){
+                TotalServicecharges = internetCost;
+            }else{
+                TotalServicecharges = 0;
+            }
+            break;
+        }
+        else{
+            cout << "You entered an invalid answer. Please enter 'Y' for yes or 'N' for no.";
+        }
+        } while (   fitness != 'Y' && fitness != 'y' && fitness != 'N' && fitness != 'n');
+
+
+
+    char breakfast;
+    double breakfastCost ;
+    do {
+        bookingForm();
+        cout << "Enter 'Y' for yes or 'N' for no for the following optional services:\n";
+        cout << "Do you want a parking spot during your stay? "<<Parking<<"\n";
+        cout << "Do you want a high speed internet during your stay? "<<internet<<"\n";
+        cout << "Do you want to use of the fitness room during your stay? "<<fitness<<"\n";
+        cout << "Do you want a breakfast during your stay? ";
+        cin >> breakfast;
+        if (breakfast == 'Y' || breakfast == 'y'){
+            breakfastCost = 50;
+            Servicecharges4 = "breakfast = 50";
+            break;
+        }
+        else if (breakfast == 'N' || breakfast == 'n'){
+            breakfastCost = 0;
+            Servicecharges4 = "breakfast = -";
+            break;
+        }
+        else{
+            cout << "You entered an invalid answer. Please enter 'Y' for yes or 'N' for no.";
+        }
+        } while (   breakfast != 'Y' && breakfast != 'y' && breakfast != 'N' && breakfast != 'n');   
+}
+ 
+//1
 void memberDetails(){
  
     char saveYN;
  
     MemberForm();
-    cout << "\tPlease enter customers first name: ";
+    cout << "\tPlease enter customers first name : ";
     cin >> ws;
     getline (cin, name);
     MemberForm();
-    cout << "\tPlease enter customers surname: ";
+    cout << "\tPlease enter customers surname : ";
     cin >> surname;
     MemberForm();
-    cout << "\tPlease enter customers house number: ";
+    cout << "\tPlease enter customers house number : ";
     cin >> address1;
-                while (cin.fail()||  address1 < 1)  // Checks for invalid entry.
+                while (cin.fail()||  address1 < 1)  
     {cin.clear(); cin.ignore();
-    cout << "\n\tPlease enter a valid house number: "; cin >> address1;}
+    cout << "\n\tPlease enter a valid house number : "; cin >> address1;}
     MemberForm();
-    cout << "\tPlease enter customers street: ";
-    cin >> ws;                        // Allows the user to enter more than one word
-    getline (cin, address2);          // in a string by allowing white spaces.
+    cout << "\tPlease enter customers street : ";
+    cin >> ws;                        
+    getline (cin, address2);         
     MemberForm();
-    cout << "\tPlease enter customer area: ";
+    cout << "\tPlease enter customer area : ";
     getline (cin, address3);
     MemberForm();
-    cout << "\tPlease enter customer city: ";
+    cout << "\tPlease enter customer city : ";
     getline (cin, address4);
     MemberForm();
-    cout << "\tPlease enter customer postcode: ";
+    cout << "\tPlease enter customer postcode : ";
     cin >> ws;
     getline (cin, postcode);
     MemberForm();
-    cout << "\tPlease enter Telephone Number: ";
-    //cin >> ws;
+    cout << "\tPlease enter Telephone Number : ";
     getline (cin, tel);
-    while (cin.fail()){ //Handles character in integer variable
+    while (cin.fail()){ 
         cin.clear();
         cin.ignore();
-        cout << "\tPlease enter Telephone Number: ";
+        cout << "\tPlease enter Telephone Number : ";
         cin >> tel;
     };
     MemberForm();
-    cout << "\tCould you have credit card? <Yes/No>";
+    cout << "\tCould you have credit card? <Yes/No> ";
     cin >> creditcard;
     MemberForm();
     if(creditcard == "Yes"){
@@ -199,14 +410,61 @@ void memberDetails(){
         savefile();
     };
 };
-void createBooking(){}
+//2
+void createBooking(){
+ 
+    char confirm;
+    system ("cls");
+    char filebooking [100];
+    ifstream file_ptr;
+    cout << "\n\t\t\t\tCreate a Booking\n\n";
+    system ("dir/b *.");
+    cout << "\n\n\tPlease type the name of the member you\n";
+    cout << "\twish to create a booking for as it appears above OR\n";
+    cout << "\ttype z (Lower case) to return to main menu: ";
+    cin.ignore();
+    gets (filebooking);
+    if (filebooking[0]  != 'z'){
+ 
+    file_ptr.open(filebooking,ios::in);
+   // char in_char;
+    while(!file_ptr)
+        {
+        cout << "Member does not exist\n";
+        gets (filebooking);
+        file_ptr.open(filebooking,ios::in);
+        }
+        getline(file_ptr, name);
+        getline(file_ptr, surname);
+        file_ptr >> address1;
+        getline(file_ptr, address2); // Duplicate required to eliminate
+        getline(file_ptr, address2); // empty field bug when using string after integer.
+        getline(file_ptr, address3);
+        getline(file_ptr, address4);
+        getline(file_ptr, postcode);
+        getline(file_ptr, tel);
+        getline(file_ptr,creditcard);
+        getline(file_ptr, creditcardType); // Duplicate required to eliminate
+        MemberForm();
+        greentext();
+        whitetext();
+        file_ptr.close();
+ 
+    cout << "\n\tCreate booking for this member? <Y/N>";
+    cin >> confirm;
+    if (confirm == 'y' || confirm == 'Y'){
+        bookingScript();
+        };
+    };
+};    
+
+
 void billpayment(){}
 void priceList(){}
 void help(){}
 void exit(){}
 void mainMenu(){
- 
-    // Private variable used for menu selection
+
     int menuchoice;
  
     system ("cls");
@@ -221,33 +479,30 @@ void mainMenu(){
     cout << "\t\t4 - bill payment\n\n";
     cout << "\t\t5 - Help\n\n";
     cout << "\t\t6 - Exit\n\n\n";
-    cout << "\t\t\tPlease choose an option: ";
+    cout << "\t\t\tPlease choose an option : ";
     cin >> menuchoice;
- 
-    //Prevents a character entry from crashing the program
+
     while (cin.fail())
         {cin.clear();
         cin.ignore();
-        cout << "\n\t\tPlease enter a valid number:"; cin >> menuchoice;
+        cout << "\n\t\tPlease enter a valid number :"; cin >> menuchoice;
     };
  
-    // Switch statement for menu selection
     switch (menuchoice){
  
-        // Enter new member function
         case 1 :
             memberDetails();
             break;
         case 2 :
-            createBooking();
+            priceList();
             break;
  
         case 3 :
-            billpayment();
+            createBooking();
             break;
  
         case 4 :
-            priceList();
+             billpayment();
             break;
  
         case 5 :
@@ -283,7 +538,7 @@ void welcome(){
 }
 int main(){
     welcome();
-     while (MenuLoop == true){mainMenu();};      //Main menu loop
+    while (MenuLoop == true){mainMenu();};     
     return 0;
 }
 
