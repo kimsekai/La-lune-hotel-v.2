@@ -83,6 +83,7 @@ double calcServiceCharge(double a, double b,double c,double d){
 void bookingScript(){
     char Parking ;
     double parkingCost ;
+    system ("cls");
     do {
         bookingForm();
         cout << "Do you want a parking spot during your stay?<Y/N> ";
@@ -103,7 +104,7 @@ void bookingScript(){
             cout << "You entered an invalid answer. Please enter 'Y' for yes or 'N' for no.\n";
         }
         }while (Parking != 'Y' && Parking != 'y' && Parking != 'N' && Parking != 'n');
-
+    
 
     char internet;
     double internetCost ;
@@ -188,11 +189,47 @@ void bookingScript(){
         if (breakfast == 'Y' || breakfast == 'y'){
             breakfastCost = 50;
             Servicecharges4 = "breakfast = 50";
+             if(TotalServicecharges = parkingCost+internetCost+fitnessCost){
+                TotalServicecharges = parkingCost+internetCost+fitnessCost+breakfastCost;
+            }else if(TotalServicecharges = parkingCost+fitnessCost){
+                TotalServicecharges = parkingCost+fitnessCost+breakfastCost;
+            }else if(TotalServicecharges = internetCost+fitnessCost){
+                TotalServicecharges = internetCost+fitnessCost+breakfastCost;
+            }else if(TotalServicecharges = parkingCost+internetCost){
+                TotalServicecharges = parkingCost+internetCost+breakfastCost;
+                
+            }else if(TotalServicecharges = fitnessCost){
+                TotalServicecharges = fitnessCost+breakfastCost;
+            }else if(TotalServicecharges = parkingCost){
+                TotalServicecharges = parkingCost+breakfastCost;
+            }else if(TotalServicecharges = internetCost){
+                TotalServicecharges = internetCost+breakfastCost;
+            }else{
+                TotalServicecharges = breakfastCost;
+            }
             break;
         }
         else if (breakfast == 'N' || breakfast == 'n'){
             breakfastCost = 0;
             Servicecharges4 = "breakfast = -";
+            if(TotalServicecharges = parkingCost+internetCost+fitnessCost){
+                TotalServicecharges = parkingCost+internetCost+fitnessCost;
+            }else if(TotalServicecharges = parkingCost+fitnessCost){
+                TotalServicecharges = parkingCost+fitnessCost;
+            }else if(TotalServicecharges = internetCost+fitnessCost){
+                TotalServicecharges = internetCost+fitnessCost;
+            }else if(TotalServicecharges = parkingCost+internetCost){
+                TotalServicecharges = parkingCost+internetCost;
+                
+            }else if(TotalServicecharges = fitnessCost){
+                TotalServicecharges = fitnessCost;
+            }else if(TotalServicecharges = parkingCost){
+                TotalServicecharges = parkingCost;
+            }else if(TotalServicecharges = internetCost){
+                TotalServicecharges = internetCost;
+            }else{
+                TotalServicecharges = 0;
+            }
             break;
         }
         else{
@@ -201,11 +238,13 @@ void bookingScript(){
         } while (   breakfast != 'Y' && breakfast != 'y' && breakfast != 'N' && breakfast != 'n');
         
         cout << " The Total service charges are : " << calcServiceCharge(parkingCost,internetCost,fitnessCost,breakfastCost);
-
+system ("pause");
     
         
    
 }
 int main(){
     bookingScript();
+ 
+    
 }
