@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include<string>
 using namespace std;
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
