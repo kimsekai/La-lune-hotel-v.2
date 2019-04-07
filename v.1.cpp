@@ -524,7 +524,7 @@ void openFile(){
 };
  
 // Main Menu choice 4
-void priceList(){
+void viewpricelist(){
 system ("cls");
 cout << "\t\tPrice List\n\n";
  
@@ -616,7 +616,7 @@ void mainMenu(){
             break;
  
         case 4 :
-            priceList();
+            
             break;
  
         case 5 :
