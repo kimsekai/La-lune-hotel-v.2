@@ -112,32 +112,6 @@ void MemberForm(){
     cout << "\n";
 }
 
-void savefile(){
-    string saveFileName;
-    stringstream out;
-    out << name << " " << surname;
-    saveFileName = out.str();
-    ofstream myfile;                                  
-    myfile.open(saveFileName.c_str(), ios::out);
-    myfile << name << "\n";
-    myfile << surname << "\n";
-    myfile << address1 << "\n";
-    myfile << address2 << "\n";
-    myfile << address3 << "\n";
-    myfile << address4 << "\n";
-    myfile << postcode << "\n";
-    myfile << tel<< "\n";
-    myfile << creditcard << "\n";
-    myfile << creditcardType << "\n";
-    myfile.close();
-    MemberForm();
-    greentext();
-    cout << "\tDetails have been saved\n\n\t";
-    whitetext();
-    system ("pause");
-}
-
-
  
 void bookingForm(){
     system ("cls");
@@ -189,31 +163,7 @@ void bookingForm(){
     whitetext();
     cout << "\n\t________________________________________________________________\n\n";
     cout << "\n";
-};    
-void savefile2(){
-    string savefilebooking;
-    stringstream out;
-    out <<name<<" "<< surname;
-     savefilebooking = out.str();
-    ofstream mybooking;                                  
-    mybooking.open(savefilebooking.c_str(), ios::out);
-    mybooking << name << "\n";
-    mybooking << surname << "\n";
-    mybooking << creditcard << "\n";
-    mybooking << creditcardType << "\n";
-    mybooking << Servicecharges1 << "\n";
-    mybooking << Servicecharges2 << "\n";
-    mybooking << Servicecharges3 << "\n";
-    mybooking << checkinDate << "\n";
-    mybooking << checkoutDate << "\n";
-    mybooking << TotalPrice << "\n";
-    mybooking.close();
-    bookingForm();
-    greentext();
-    cout << "\tDetails have been saved\n\n\t";
-    whitetext();
-    system ("pause");
-}
+};   
 void bookingScript(){
     string saveYN;
     double discount;
@@ -326,73 +276,58 @@ void bookingScript(){
             cout << "You entered an invalid answer. Please enter 'Y' for yes or 'N' for no.";
         }
     } while (   fitness != 'Y' && fitness != 'y' && fitness != 'N' && fitness != 'n');
-    char breakfast;
-    double breakfastCost ;
-    do{
-        bookingForm();
-        cout << "Enter 'Y' for yes or 'N' for no for the following optional services:\n";
-        cout << "Do you want a parking spot during your stay? "<<Parking<<"\n";
-        cout << "Do you want a high speed internet during your stay? "<<internet<<"\n";
-        cout << "Do you want to use of the fitness room during your stay? "<<fitness<<"\n";
-        cout << "Do you want a breakfast during your stay? ";
-       if (breakfast == 'Y' || breakfast == 'y'){
-            breakfastCost = 50;
-            Servicecharges4 = "breakfast = 50";
-            if(TotalServicecharges = parkingCost+internetCost+fitnessCost){
-                TotalServicecharges = parkingCost+internetCost+fitnessCost+breakfastCost;
-            }else if(TotalServicecharges = parkingCost+fitnessCost){
-                TotalServicecharges = parkingCost+fitnessCost+breakfastCost;
-            }else if(TotalServicecharges = internetCost+fitnessCost){
-                TotalServicecharges = internetCost+fitnessCost+breakfastCost;
-            }else if(TotalServicecharges = parkingCost+internetCost){
-                TotalServicecharges = parkingCost+internetCost+breakfastCost;
-                
-            }else if(TotalServicecharges = fitnessCost){
-                TotalServicecharges = fitnessCost+breakfastCost;
-            }else if(TotalServicecharges = parkingCost){
-                TotalServicecharges = parkingCost+breakfastCost;
-            }else if(TotalServicecharges = internetCost){
-                TotalServicecharges = internetCost+breakfastCost;
-            }else{
-                TotalServicecharges = breakfastCost;
-            }
-            break;
-        }
-        else if (breakfast == 'N' || breakfast == 'n'){
-            breakfastCost = 0;
-            Servicecharges4 = "breakfast = -";
-            if(TotalServicecharges = parkingCost+internetCost+fitnessCost){
-                TotalServicecharges = parkingCost+internetCost+fitnessCost;
-            }else if(TotalServicecharges = parkingCost+fitnessCost){
-                TotalServicecharges = parkingCost+fitnessCost;
-            }else if(TotalServicecharges = internetCost+fitnessCost){
-                TotalServicecharges = internetCost+fitnessCost;
-            }else if(TotalServicecharges = parkingCost+internetCost){
-                TotalServicecharges = parkingCost+internetCost;
-                
-            }else if(TotalServicecharges = fitnessCost){
-                TotalServicecharges = fitnessCost;
-            }else if(TotalServicecharges = parkingCost){
-                TotalServicecharges = parkingCost;
-            }else if(TotalServicecharges = internetCost){
-                TotalServicecharges = internetCost;
-            }else{
-                TotalServicecharges = 0;
-            }
-            break;
-        }
-        } while (   breakfast != 'Y' && breakfast != 'y' && breakfast != 'N' && breakfast != 'n');
-
-
     
-     bookingForm();
-    cout << "\tSave these details to a file? <Yes/No> ";
-    cin >> saveYN;
-    if (saveYN == "Yes" || saveYN == "yes"){
-        savefile2();
-    }; 
-}
+     string saveBookingName;
+    stringstream out;
+    out << name << " " << surname << ".booking";
+    saveBookingName = out.str();
  
+    ofstream myfile;                                  //Save file structure
+    myfile.open (saveBookingName.c_str(), ios::out);
+    myfile << name << "\n";
+    myfile << surname << "\n";
+    myfile << creditcard << "\n";
+    myfile << creditcardType << "\n";
+    myfile << Servicecharges1 << "\n";
+    myfile << Servicecharges2 << "\n";
+    myfile << Servicecharges3 << "\n";
+   
+    myfile.close();
+    bookingForm();
+    greentext();
+    cout << "\tBooking have been saved\n\n\t";
+    whitetext();
+    
+    system ("pause");
+ 
+}
+ void savefile(){
+    string saveFileName;
+    stringstream out;
+    out << name << " " << surname;
+    saveFileName = out.str();
+    ofstream myfile;                                  
+    myfile.open(saveFileName.c_str(), ios::out);
+    myfile << name << "\n";
+    myfile << surname << "\n";
+    myfile << address1 << "\n";
+    myfile << address2 << "\n";
+    myfile << address3 << "\n";
+    myfile << address4 << "\n";
+    myfile << postcode << "\n";
+    myfile << tel<< "\n";
+    myfile << creditcard << "\n";
+    myfile << creditcardType << "\n";
+
+    myfile.close();
+    MemberForm();
+    greentext();
+    cout << "\tDetails have been saved\n\n\t";
+    whitetext();
+    system ("pause");
+}
+
+
 
 void memberDetails(){
     string saveYN;
@@ -517,51 +452,61 @@ void Showbillpaymentscript(){
 
 
 void billpayment(){
-char confirm;
-    system ("cls");
-    char filebooking [100];
+system ("cls");
+    char filename [100];
     ifstream file_ptr;
-    cout << "\n\t\t\t\tCreate a Booking\n\n";
-    system ("dir/b *.");
-    cout << "\n\n\tPlease type the name of the member you\n";
-    cout << "\twish to create a booking for as it appears above OR\n";
-    cout << "\ttype z (Lower case) to return to main menu: ";
+    cout << "\n\t\t\t\tSaved Bookings:\n\n";
+    system ("dir/b *.booking");
+    cout << "\n\nPlease type the name of the booking you\n";
+    cout << "     wish to open as it appears above OR\n";
+    cout << "     type z (Lower case) to return to main menu: ";
     cin.ignore();
-    gets (filebooking);
-    if (filebooking[0]  != 'z'){
-    file_ptr.open(filebooking,ios::in);
+    gets (filename);
+    if (filename[0]  != 'z'){
+ 
+    file_ptr.open(filename,ios::in);
+   // char in_char;
     while(!file_ptr)
         {
         cout << "Member does not exist\n";
-        gets (filebooking);
-        file_ptr.open(filebooking,ios::in);
+        gets (filename);
+        file_ptr.open(filename,ios::in);
         }
         getline(file_ptr, name);
         getline(file_ptr, surname);
-        getline(file_ptr,creditcard);
+ 
+        getline(file_ptr, creditcard); // Duplicate required to eliminate
+        //getline(file_ptr, membershipType); // empty field bug when using string after integer.
         getline(file_ptr, creditcardType);
         getline(file_ptr, Servicecharges1);
-        getline(file_ptr, Servicecharges2); 
+        getline(file_ptr, Servicecharges2);
         getline(file_ptr, Servicecharges3);
-        
+        getline(file_ptr, Servicecharges4);
+
+        file_ptr >>checkinDate;
+        file_ptr >>checkinMonth;
+        file_ptr >> checkoutDate;
+        file_ptr >> checkoutMonth;
+        file_ptr >> checkoutYear;
+          file_ptr >> TotalPrice;
+            file_ptr >> TotalServicecharges;
+ 
+        //getline(file_ptr, activityDate);
+        //getline(file_ptr, activityMonth);
+        //getline(file_ptr, activityYear);
+ 
+ 
         bookingForm();
         greentext();
         whitetext();
+ 
         file_ptr.close();
-    cout << "\n\tShow Bill Payment? <Y/N>";
-    cin >> confirm;
-    if (confirm == 'y' || confirm == 'Y'){
-        Showbillpaymentscript();
+        system ("pause");
         };
+    
    
 }    
 
-
-
-
-
-
-}
 void priceList(){}
 void help(){}
 void exit(){}
