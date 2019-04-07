@@ -197,11 +197,47 @@ void bookingScript(){
         if (breakfast == 'Y' || breakfast == 'y'){
             breakfastCost = 50;
             Servicecharges4 = "breakfast = 50";
+            if(TotalServicecharges = parkingCost+internetCost+fitnessCost){
+                TotalServicecharges = parkingCost+internetCost+fitnessCost+breakfastCost;
+            }else if(TotalServicecharges = parkingCost+fitnessCost){
+                TotalServicecharges = parkingCost+fitnessCost+breakfastCost;
+            }else if(TotalServicecharges = internetCost+fitnessCost){
+                TotalServicecharges = internetCost+fitnessCost+breakfastCost;
+            }else if(TotalServicecharges = parkingCost+internetCost){
+                TotalServicecharges = parkingCost+internetCost+breakfastCost;
+                
+            }else if(TotalServicecharges = fitnessCost){
+                TotalServicecharges = fitnessCost+breakfastCost;
+            }else if(TotalServicecharges = parkingCost){
+                TotalServicecharges = parkingCost+breakfastCost;
+            }else if(TotalServicecharges = internetCost){
+                TotalServicecharges = internetCost+breakfastCost;
+            }else{
+                TotalServicecharges = breakfastCost;
+            }
             break;
         }
         else if (breakfast == 'N' || breakfast == 'n'){
             breakfastCost = 0;
             Servicecharges4 = "breakfast = -";
+            if(TotalServicecharges = parkingCost+internetCost+fitnessCost){
+                TotalServicecharges = parkingCost+internetCost+fitnessCost;
+            }else if(TotalServicecharges = parkingCost+fitnessCost){
+                TotalServicecharges = parkingCost+fitnessCost;
+            }else if(TotalServicecharges = internetCost+fitnessCost){
+                TotalServicecharges = internetCost+fitnessCost;
+            }else if(TotalServicecharges = parkingCost+internetCost){
+                TotalServicecharges = parkingCost+internetCost;
+                
+            }else if(TotalServicecharges = fitnessCost){
+                TotalServicecharges = fitnessCost;
+            }else if(TotalServicecharges = parkingCost){
+                TotalServicecharges = parkingCost;
+            }else if(TotalServicecharges = internetCost){
+                TotalServicecharges = internetCost;
+            }else{
+                TotalServicecharges = 0;
+            }
             break;
         }
         else{
