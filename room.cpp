@@ -17,15 +17,14 @@ int main(){
 
 
 void room(int b,int s){
- int j = 0;
-    if(b<=2 || s<=2){
-        j = 2;
-    }
-    if (b>=3 && b<=4 || s<=2) {
-        j = 3;
-    }
+	cout << "-----------------------\n";
+	int j = 0;
+    if(b<=2 && s<=2) j = 2;
+    if(b>2 && b<=4 && s<=2) j = 3;
+    cout << j <<"\n";
+    cout << "-----------------------\n";
     int i = 0;
-    while( i < j )
+    while( i <= j )
     {
         if (j != 3) {
             if (i == 1) {
@@ -48,11 +47,10 @@ void room(int b,int s){
             cout << "   - Private Bathroom  \n";
             cout << "   ------------------------------------  \n";
             }
-        }
-
-        if (i == 3) {
-            cout <<"1.";
-             cout << " Standard Family \n";
+        }else if(i==1){
+        	
+        		cout << i  << ".";
+				cout << " Standard Family \n";
                 cout << "   - Price per night : 1200 Baht\n";
                 cout << "   - 1 king bed and 1 bunk bed   \n";
                 cout << "   - Balcony/terrace  \n";
@@ -60,7 +58,10 @@ void room(int b,int s){
                 cout << "   - Non-smoking  \n";
                 cout << "   - Private Bathroom  \n";
                 cout << "   ------------------------------------  \n";
+        		
+			
+            
             }
             i ++;
-            }
-}
+			}	
+			}
