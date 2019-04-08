@@ -515,12 +515,13 @@ void createBooking(){
 } 
 void Showbillpayment(){
     system ("cls");
-    cout<<"\n________________________________________________________________________________\n";
-    cout<<"\t\t\t\t Marriott Luxury Hotel ";
+   	cout<<"\n________________________________________________________________________________\n";
+    cout<<"\t\t\t\t    La-lune-hotel  ";
     cout<<"\n \t\t\t____________________________________";
-    cout<<"\n\t\t\t\t Chandigarh , Punjab-070. ";
-    cout<<"\n\t\t\t\t Tel :- 12253636 ";
+    cout<<"\n\t\t\t\tChiang Mai,Chiang Mai  ";
+    cout<<"\n\t\t\t\t    Tel :-023658966 ";
     cout<<"\n--------------------------------------------------------------------------------\n";
+ 	
     system ("pause");
 }  
 void Showbillpaymentscript(){
@@ -529,6 +530,7 @@ void Showbillpaymentscript(){
 
 
 void billpayment(){
+    char confirm;
 system ("cls");
     char filename [100];
     ifstream file_ptr;
@@ -552,8 +554,7 @@ system ("cls");
         getline(file_ptr, name);
         getline(file_ptr, surname);
  
-        getline(file_ptr, creditcard); // Duplicate required to eliminate
-        //getline(file_ptr, membershipType); // empty field bug when using string after integer.
+        getline(file_ptr, creditcard); 
         getline(file_ptr, creditcardType);
         getline(file_ptr, Servicecharges1);
         getline(file_ptr, Servicecharges2);
@@ -565,22 +566,19 @@ system ("cls");
         file_ptr >> checkoutDate;
         file_ptr >> checkoutMonth;
         file_ptr >> checkoutYear;
-    
-           
- 
-        //getline(file_ptr, activityDate);
-        //getline(file_ptr, activityMonth);
-        //getline(file_ptr, activityYear);
- 
+        file_ptr >> TotalPrice;
  
         bookingForm();
         greentext();
         whitetext();
  
         file_ptr.close();
-        system ("pause");
         };
-    
+      cout << "\n\tShow Bill payment? <Y/N>";
+    cin >> confirm;
+    if (confirm == 'y' || confirm == 'Y'){
+        Showbillpaymentscript();
+        };
    
 }    
 
