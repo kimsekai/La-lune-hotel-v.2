@@ -531,7 +531,19 @@ void Showbillpayment(){
     cout<<"\n\t\t\t\tChiang Mai,Chiang Mai  ";
     cout<<"\n\t\t\t\t    Tel :-023658966 ";
     cout<<"\n--------------------------------------------------------------------------------\n";
- 	
+ 	cout<<"\n      Customer name : "<<name<<" "<<surname;     
+    cout<<"\n                              ";     
+    cout<<"\n      Stayed for "<<r_day<<" days";     
+    cout<<"\n      Room charges(Per day)    : "<<r_charge;     
+    cout<<"\n      Room charges(Total)    : "<<room;     
+     
+    cout<<"\n      Total service hanges charges   : "<<oc;     
+    cout<<"\n                          Ser.tax % = 5%";     
+    cout<<"\n                          Ser.tax   ="<<ser;     
+    cout<<"\n      Bill Amount >>>>>> Rs "<<total;     
+    cout<<"\n                              ";     
+    cout<<"\n      ***THANK YOU FOR COMING***";     
+    cout<<"\n      Visit Again !";   
     system ("pause");
 }  
 void Showbillpaymentscript(){
