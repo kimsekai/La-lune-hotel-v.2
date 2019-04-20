@@ -42,6 +42,16 @@ int creditcardSelection;
 string creditcardType("*****");
 string creditcard("****"); 
 
+bool Menupricelist = true;
+int number;
+double StandardStudio = 600.00;
+double DeluxeStudio = 900.00;
+double StandardFamily = 1200.00;
+double ParkingSpot = 20.00;
+double HighSpeedInternet = 50.00;
+double FitnessRoom = 20.00;
+double Breakfast = 50.00;
+
 void resetMemberDetails(){
     name = "*****";
     surname = "*****";
@@ -180,7 +190,6 @@ void bookingForm(){
 };   
 void bookingScript(){
     string saveYN;
-    double discount;
     char confirmationSave;
      char Parking ;
     double parkingCost ;
@@ -580,10 +589,90 @@ system ("cls");
         };
     };
 }    
+void mainofpricelist(){
+    
+    system ("cls");
+    cout << "\t\tView of pricelist\n\n";
+    cout << "1 - Detail of Room\n\n";
+    cout << "2 - Detail of Sevice changes\n\n";
+    cout << "3 - Back to Main menu\n\n";
+    cout << "Please select a number of page: ";
+    cin >> number;
 
-void priceList(){}
-void help(){}
-void exit(){}
+     
+}
+
+void backtomainmenu(){
+    Menupricelist == false;
+}
+
+void priceList(){
+    
+    mainofpricelist();
+
+    if (number == 1){
+    system ("cls");
+    cout <<"\t\t\t\t\t\t\t\t\t\t\t\t\t\t           page1\n"; 
+    cout << "\tPrice List\n\n";
+ 
+    cout << "\t\t\t\t\tDetail of Rooms\n\n\t";
+    cout << "\t\t\t\tNone member  |    GSB(discount 10%)    |    KTB(discount 15%)    |    SCB(discount 20%)";
+    cout << "\n\n\tStandard Studio.............     \x9c"<< StandardStudio <<" Bath"<< "\t        " << StandardStudio * 0.9 <<" Bath"<< "\t\t  " << StandardStudio * 0.85 <<" Bath"<<"\t\t    " << StandardStudio * 0.8<<"Bath";
+    cout << "\n\n\tDeluxe Studio...............     \x9c"<< DeluxeStudio <<" Bath"<< "\t        " << DeluxeStudio * 0.9 <<" Bath"<< "\t\t  " << DeluxeStudio * 0.85 <<" Bath"<<"\t\t    " << DeluxeStudio * 0.8<<"Bath";
+    cout << "\n\n\tStandard Family.............     \x9c"<< StandardFamily <<" Bath"<< "\t        " << StandardFamily * 0.9 <<" Bath"<< "\t\t  " << StandardFamily * 0.85 <<" Bath"<<"\t\t    " << StandardFamily * 0.8 <<"Bath"<<"\n\n";
+    system ("pause");
+    mainofpricelist();
+        
+    };
+
+    if (number == 2){
+    system ("cls");
+    cout <<"\t\t\t\t\t\t\t\t\t\t\tpage2\n"; 
+    cout << "\tPrice List\n\n";
+    
+    cout << "\t\t\t\t\tDetail of Service charges\n\n\t";
+    cout << "\t\t\t\tPrice(Bath)";
+    cout << "\n\n\tParking spot................        \x9c"<< ParkingSpot << " Bath";
+    cout << "\n\n\tHigh speed internet.........        \x9c"<< HighSpeedInternet << " Bath";
+    cout << "\n\n\tFitness Room................        \x9c"<< FitnessRoom << " Bath";
+    cout << "\n\n\tBreakfast............. .....        \x9c"<< Breakfast << " Bath\n\n";
+    system ("pause");
+    mainofpricelist();
+    };
+
+    if(number ==3){
+        backtomainmenu();
+    
+    };
+
+    
+
+}
+void help(){
+    system ("cls");
+cout << "\t\t\t\tHelp\n\n";
+ 
+cout << "To enter a new member into the system, Choose option 1 from the Main Menu.\n";
+cout << "Enter the new members details into the membership form and press Y to save once finished.\n\n\n";
+
+cout << "To view a price list, select option 2 from the main menu.\n\n\n";
+ 
+cout << "To create a new booking, select option 3 from the main menu.\n";
+cout << "Enter the booking choices and then press Y to save the booking\n";
+cout << "After create a new booking, can view detail of booking by typing the name of a file as it\n";
+cout << "is displayed on the list to open and view it.\n\n\n";
+ 
+cout << "To view a bill payment, choose option 4 from the main menu\n";
+cout << "To open a member or booking file, choose option 3 at the main menu.\n";
+cout << "Type the name of a file as it is displayed on the list to open and view it.\n\n\n";
+ 
+
+ 
+system ("pause");
+}
+void exit(){
+     MenuLoop = false;
+}
 void mainMenu(){
 
     int menuchoice;
