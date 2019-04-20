@@ -15,7 +15,6 @@ void bluetext(){SetConsoleTextAttribute(hConsole, 11);  };
 void yellowtext(){SetConsoleTextAttribute(hConsole, 14);  };
 void darktext(){SetConsoleTextAttribute(hConsole, 8);  };
 
-
 string Servicecharges1("*****");
 string Servicecharges2("*****");
 string Servicecharges3("*****");
@@ -29,7 +28,21 @@ int checkoutYear(00);
 int DAY(00);
 double TotalPrice(0.00);
 double TotalServicecharges(0.00);
- 
+int day, month, year;
+int day2,month2,year2;
+const int january = 31;
+const int february = 28;
+const int leapYearFeb = 29;
+const int march = 31;
+const int april = 30;
+const int may = 31;
+const int june =30;
+const int july = 31;
+const int august = 31;
+const int september = 30;
+const int october = 31;
+const int november = 30;
+const int decemebr = 31;
 bool MenuLoop = true;
 string name("*****");    
 string surname("*****");
@@ -42,6 +55,14 @@ string tel("00");
 int creditcardSelection;
 string creditcardType("*****");
 string creditcard("****"); 
+
+int stdroom[3] = {101,102,103} ;
+int delroom[3] = {201,202,203} ;
+int famroom[3] = {301,302,303} ;
+int roomSelection;
+string roomType("*****");
+int roomnumberSelection;
+string roomnumber("*****");
 
 void resetMemberDetails(){
     name = "*****";
@@ -62,13 +83,12 @@ void resetBookingDetails(){
     Servicecharges3 = "*****";
     Servicecharges4 = "*****";
     TotalServicecharges = 00;
-    checkinDate= 00;
-    checkinMonth = 00;
-    checkinYear = 00;
-    checkoutDate= 00;
-    checkoutMonth = 00;
-    checkoutYear = 00;
-    DAY = 00;
+    day= 00;
+    month = 00;
+    year = 00;
+    day2= 00;
+    month2 = 00;
+    year2 = 00;
 }
 void MemberForm(){
     system ("cls");
@@ -126,6 +146,13 @@ void MemberForm(){
     cout << "\n\t________________________________________________________________\n\n";
     cout << "\n";
 }
+bool leapYear (int year)
+{
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+        return true;
+    else
+        return false;
+}
 bool validMonth (int month)
 {
     if (month > 0 || month < 13)
@@ -141,19 +168,399 @@ bool validYear (int year)
     else
         return false;
 }
- void getData1 (int& checkinDate, int&checkinMonth, int& checkinYear)
+ void getData1 (int& day, int& month, int& year)
 {
    whitetext();
     cout << "\n\t\t          Check in Date: ";
-    if (checkinDate != 00){greentext();};
-    cout << checkinDate << "/" << checkinMonth << "/" << checkinYear;   
+    if (day != 00){greentext();};
+    cout << day << "/" << month << "/" << year;   
 }
-void getData2 (int& checkinDate, int&checkinMonth, int& checkinYear)
+
+bool validDay (int year, int month, int day)
 {
-    whitetext();
+    if(year > 1582)
+    {
+        if(validMonth(month))
+        {
+            if((month == 1) || (month == 3) || (month == 5) || (month == 7) || (month || 8) || (month == 10) || (month || 12))
+            {
+                if((day > 0) || (day < 32))
+                    return true;
+                else
+                    return false;
+            }
+            if((month == 4) || (month == 6) || (month == 9) || (month == 11))
+            {
+                if((day > 0) || (day < 31))
+                    return true;
+                else
+                    return false;
+            }
+            if(month == 2)
+            {
+                if((day > 0) || (day < 29))     
+                    return true;
+                else
+                    return false;
+            }
+            if((leapYear(year)))
+            {
+                if((month == 2) && ((day > 0) || (day < 30)))
+                    return true;
+                else
+                    return false;
+            }
+        }
+    }
+}
+
+
+int dayOfYear (int day, int month, int year)
+{
+    int dayTotal = 0;
+
+    if(validDay(day, month, year))
+    {
+        if(month == 1)
+        {
+            dayTotal = 0 + day;
+        }
+
+        if(month == 2)
+        {
+            dayTotal = january + day;
+        }
+
+        if((month == 3) && (year > 1582))
+        {
+            dayTotal = january + february + day;
+
+            if((month == 3) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + day;
+            }
+        }
+
+        if((month == 4) && (year > 1582))
+        {
+            dayTotal = january + february + march + day;
+
+            if((month == 4) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + march + day;
+            }
+        }
+
+        if((month == 5) && (year > 1582))
+        {
+            dayTotal = january + february + march + april + day;
+
+            if((month == 5) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + march + april + day;
+            }
+        }
+
+        if((month == 6) && (year > 1582))
+        {
+            dayTotal = january + february + march + april + may + day;
+
+            if((month == 6) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + march + april + may + day;
+            }
+        }
+
+        if((month == 7) && (year > 1582))
+        {
+            dayTotal = january + february + march + april + may + june + day;
+
+            if((month == 7) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + march + april + may + june + day;
+            }
+        }
+
+        if((month == 8) && (year > 1582))
+        {
+            dayTotal = january + february + march + april + may + june + july + day;
+
+            if((month == 8) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + march + april + may + june + july + day;
+            }
+        }
+
+        if((month == 9) && (year > 1582))
+        {
+            dayTotal = january + february + march + april + may + june + july + august 
+                       + day;
+
+            if((month == 9) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + march + april + may + june + july + august 
+                       + day;
+            }
+        }
+
+        if((month == 10) && (year > 1582))
+        {
+            dayTotal = january + february + march + april + may + june + july + august 
+                       + september + day;
+
+            if((month == 10) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + march + april + may + june + july + august
+                       + september + day;
+            }
+        }
+
+        if((month == 11) && (year > 1582))
+        {
+            dayTotal = january + february + march + april + may + june + july + august 
+                       + september + october + day;
+
+            if((month == 11) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + march + april + may + june + july + august 
+                       + september + october + day;
+            }
+        }
+
+        if((month == 12) && (year > 1582))
+        {
+            dayTotal = january + february + march + april + may + june + july + august
+                       + september + october + november + day;
+
+            if((month == 5) && (year > 1582) && (leapYear(year)))
+            {
+                dayTotal = january + leapYearFeb + march + april + may + june + july + august
+                       + september + october + november + day;
+            }
+        }
+    }
+
+    return dayTotal;
+}
+bool leapYear2 (int year2)
+{
+    if ((year2 % 4 == 0 && year2 % 100 != 0) || (year2 % 400 == 0))
+        return true;
+    else
+        return false;
+}
+bool validMonth2 (int month2)
+{
+    if (month2 > 0 || month2 < 13)
+        return true;
+    else
+        return false;
+}
+
+bool validYear2 (int year2)
+{
+    if (year2 > 1582)
+        return true;
+    else
+        return false;
+}
+ 
+ void getData2 (int& day2, int& month2, int& year2)
+{
+   whitetext();
     cout << "\n\t\t          Check out Date: ";
-    if (checkoutDate != 00){greentext();};
-    cout << checkoutDate << "/" << checkoutMonth << "/" << checkoutYear;
+    if (day2 != 00){greentext();};
+    cout << day2 << "/" << month2<< "/" << year2;   
+}
+
+bool validDay2 (int year2, int month2, int day2)
+{
+    if(year2 > 1582)
+    {
+        if(validMonth2(month2))
+        {
+            if((month2 == 1) || (month2 == 3) || (month2 == 5) || (month2 == 7) || (month2 || 8) || (month2 == 10) || (month2 || 12))
+            {
+                if((day2 > 0) || (day2 < 32))
+                    return true;
+                else
+                    return false;
+            }
+            if((month2 == 4) || (month2 == 6) || (month2 == 9) || (month2 == 11))
+            {
+                if((day2 > 0) || (day2 < 31))
+                    return true;
+                else
+                    return false;
+            }
+            if(month2 == 2)
+            {
+                if((day2 > 0) || (day2 < 29))     
+                    return true;
+                else
+                    return false;
+            }
+            if((leapYear2(year2)))
+            {
+                if((month2 == 2) && ((day2 > 0) || (day2 < 30)))
+                    return true;
+                else
+                    return false;
+            }
+        }
+    }
+}
+
+
+int dayOfYear2 (int day2, int month2, int year2)
+{
+    int dayTotal2 = 0;
+
+    if(validDay2(day2, month2, year2))
+    {
+        if(month2 == 1)
+        {
+            dayTotal2 = 0 + day2;
+        }
+
+        if(month2 == 2)
+        {
+            dayTotal2 = january + day2;
+        }
+
+        if((month2 == 3) && (year > 1582))
+        {
+            dayTotal2 = january + february + day2;
+
+            if((month2 == 3) && (year2 > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + day2;
+            }
+        }
+
+        if((month2 == 4) && (year2 > 1582))
+        {
+            dayTotal2 = january + february + march + day;
+
+            if((month2 == 4) && (year2 > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + march + day2;
+            }
+        }
+
+        if((month2 == 5) && (year2 > 1582))
+        {
+            dayTotal2 = january + february + march + april + day2;
+
+            if((month2 == 5) && (year2 > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + march + april + day2;
+            }
+        }
+
+        if((month2 == 6) && (year2 > 1582))
+        {
+            dayTotal2 = january + february + march + april + may + day2;
+
+            if((month2 == 6) && (year2 > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + march + april + may + day2;
+            }
+        }
+
+        if((month2 == 7) && (year2 > 1582))
+        {
+            dayTotal2 = january + february + march + april + may + june + day2;
+
+            if((month2 == 7) && (year2 > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + march + april + may + june + day2;
+            }
+        }
+
+        if((month2 == 8) && (year2 > 1582))
+        {
+            dayTotal2 = january + february + march + april + may + june + july + day2;
+
+            if((month2 == 8) && (year2 > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + march + april + may + june + july + day2;
+            }
+        }
+
+        if((month2 == 9) && (year2 > 1582))
+        {
+            dayTotal2 = january + february + march + april + may + june + july + august 
+                       + day2;
+
+            if((month2 == 9) && (year > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + march + april + may + june + july + august 
+                       + day2;
+            }
+        }
+
+        if((month2 == 10) && (year2 > 1582))
+        {
+            dayTotal2 = january + february + march + april + may + june + july + august 
+                       + september + day2;
+
+            if((month2 == 10) && (year2 > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + march + april + may + june + july + august
+                       + september + day2;
+            }
+        }
+
+        if((month2 == 11) && (year2 > 1582))
+        {
+            dayTotal2 = january + february + march + april + may + june + july + august 
+                       + september + october + day2;
+
+            if((month2 == 11) && (year2 > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + march + april + may + june + july + august 
+                       + september + october + day2;
+            }
+        }
+
+        if((month2 == 12) && (year2 > 1582))
+        {
+            dayTotal2 = january + february + march + april + may + june + july + august
+                       + september + october + november + day2;
+
+            if((month2 == 5) && (year2 > 1582) && (leapYear(year2)))
+            {
+                dayTotal2 = january + leapYearFeb + march + april + may + june + july + august
+                       + september + october + november + day2;
+            }
+        }
+    }
+
+    return dayTotal2;
+}
+
+void calculateall(){
+    getData1(day , month,  year); 
+    validDay(day, month, year);
+    getData2(day2 , month2,  year2); 
+    validDay2(day2, month2, year2);
+    if(validDay2(day2, month2, year2) &&validDay(day, month, year)== true)
+                {   
+                    whitetext();
+                    cout<<"\n\t\t          For how many nights: ";
+                    greentext();
+                    if(dayOfYear(day, month, year)>=1 and dayOfYear(day, month, year)<=364 )
+                    cout<<dayOfYear2(day2, month2, year2)-dayOfYear(day, month, year)<<" night";
+                    if(dayOfYear(day, month, year)==365){
+                    cout<<dayOfYear2(day2, month2, year2)<<" night";    
+                    }
+                    if(dayOfYear(day, month, year)==366){
+                    cout<<dayOfYear2(day2, month2, year2)<<" night";    
+                    }
+
+                }
+    
 }
 void bookingForm(){
     system ("cls");
@@ -190,14 +597,15 @@ void bookingForm(){
     cout << "\n\t\t          Total Service charges: ";
     if (TotalServicecharges != 00.00){greentext();};
     cout << TotalServicecharges;
-    getData1(); 
-    getData2(); 
+    calculateall();
     whitetext();
-    cout<<  "\n\t\t          For how many nights: ";
+    cout << "\n\t\t         Room Type: ";
+    if (roomType != "*****"){greentext();};
+    cout << roomType;
     whitetext();
-    if (DAY != 00){greentext();}
-    if(DAY==1){cout<<DAY<< "night";}
-    else if(DAY>1)cout<<DAY<<"nights";
+    cout << "\n\t\t         Room Number: ";
+    if (roomnumber != "*****"){greentext();};
+    cout << roomnumber;
     whitetext();
     cout << "\n\t\t          Total Price: ";
     if (TotalPrice != 00.00){greentext();};
@@ -377,54 +785,122 @@ void bookingScript(){
         }
         } while (   breakfast != 'Y' && breakfast != 'y' && breakfast != 'N' && breakfast != 'n');
     bookingForm();
-   
-    cout << "\tPlease enter Membership Start Date(DD): ";
-    cin >> checkinDate;
-    while (cin.fail() || checkinDate > 31 || checkinDate < 1){//Catches invalid date
+
+    cout << "\tPlease enter  Start Date(DD): ";
+    cin >> day;
+    while (cin.fail() || day > 31 || day< 1){//Catches invalid date
         cin.clear(); cin.ignore();
         cout << "\n\tPlease enter a valid date (1-31): ";
-        cin >> checkinDate;
+        cin >> day;
     };
 
     bookingForm();
-    cout << "\tPlease enter Membership Start Month(MM): ";
-    cin >> checkinMonth;
-    while (cin.fail() || checkinMonth > 12 ||checkinMonth  < 1){//Catches invalid month
+    cout << "\tPlease enter Start Month(MM): ";
+    cin >>month;
+    while (cin.fail() || month > 12 ||month< 1){//Catches invalid month
         cin.clear(); cin.ignore();
         cout << "\n\tPlease enter a valid month (1-12): ";
-        cin >> checkinMonth;}
+        cin >> month;}
      bookingForm();
-    cout << "\tPlease enter Membership Start Year(YY): ";
-    cin >> checkinYear;
-    while (cin.fail() || checkinYear > 99 || checkinYear< 1){//Catches invalid year
+    cout << "\tPlease enter  Start Year(YY): ";
+    cin >> year ;
+    while (cin.fail() || year > 9999 || year < 1000){//Catches invalid year
         cin.clear(); cin.ignore();
-        cout << "\n\tPlease enter a valid Year (1-99): ";
-        cin >> checkinYear;}
+        cout << "\n\tPlease enter a valid Year : ";
+        cin >> year ;}
      bookingForm();
-    cout << "\tPlease enter Membership End Date(DD): ";
-    cin >> checkoutDate;
-    while (cin.fail() || checkoutDate > 31 || checkoutDate < 1){
+    cout << "\tPlease enter  End Date(DD): ";
+    cin >> day2;
+    while (cin.fail() || day2 > 31 || day2 < 1){
         cin.clear(); cin.ignore();
         cout << "\n\tPlease enter a valid date (1-31): ";
-        cin >> checkoutDate;}
+        cin >>day2;}
      bookingForm();
-    cout << "\tPlease enter Membership End Month(MM): ";
-    cin >>  checkoutMonth;
-    while (cin.fail() || checkoutMonth > 12 ||  checkoutMonth < 1){
+    cout << "\tPlease enter  End Month(MM): ";
+    cin >>  month2;
+    while (cin.fail() || month2 > 12 ||  month2 < 1){
         cin.clear(); cin.ignore();
         cout << "\n\tPlease enter a valid month (1-12): ";
-        cin >>  checkoutMonth;}
+        cin >>  month2;}
      bookingForm();
-    cout << "\tPlease enter Membership End Year(YY): ";
-    cin >> checkoutYear;
-    while (cin.fail() || checkoutYear> 99 ||checkoutYear < 1){
+    cout << "\tPlease enter  End Year(YY): ";
+    cin >> year2;
+    while (cin.fail() || year2> 9999 ||year2 < 1000){
         cin.clear(); cin.ignore();
-        cout << "\n\tPlease enter a valid year (1-99): ";
-        cin >> checkinYear;}
+        cout << "\n\tPlease enter a valid year : ";
+        cin >> year2;}
      bookingForm(); 
-
-
-
+    
+    cout << "\tWhat kind of room do you want?\n";
+    cout << "\t1 - Standard Studio\n";
+    cout << "\t2 - Deluxe Studio\n";
+    cout << "\t3 - Standard Family\n";
+    cout << "\t> : ";
+    cin >> roomSelection;
+    switch(roomSelection){
+        case 1 :
+            roomType = "Standard Studio";
+            break;
+        case 2 :
+            roomType = "Deluxe Studio";
+            break;
+        case 3 :
+            roomType = "Standard Family";
+            break;
+    }
+    bookingForm(); 
+    cout << "What number of room do you want?\n";
+    if(roomType == "Standard Studio"){
+        cout << "\t1 - 101\n\t2 - 102\n\t3 - 103\n";
+        cout << "\t> : ";
+        cin >> roomnumberSelection;
+        switch(roomnumberSelection){
+            case 1 :
+                roomnumber = "101";
+                break;
+            case 2 :
+                roomnumber = "102";
+                break;
+            case 3 :
+                roomnumber = "103";
+                break;
+        }
+        bookingForm(); 
+    }
+    if(roomType == "Deluxe Studio"){
+        cout << "\t1 - 201\n\t2 - 202\n\t3 - 203\n";
+        cout << "\t> : ";
+        cin >> roomnumberSelection;
+        switch(roomnumberSelection){
+            case 1 :
+                roomnumber = "201";
+                break;
+            case 2 :
+                roomnumber = "202";
+                break;
+            case 3 :
+                roomnumber = "203";
+                break;
+        }
+        bookingForm(); 
+    }
+    if(roomType == "Standard Family"){
+        cout << "\t1 - 301\n\t2 - 302\n\t3 - 303\n";
+        cout << "\t> : ";
+        cin >> roomnumberSelection;
+        switch(roomnumberSelection){
+            case 1 :
+                roomnumber = "301";
+                break;
+            case 2 :
+                roomnumber = "302";
+                break;
+            case 3 :
+                roomnumber = "303";
+                break;
+        }
+        bookingForm(); 
+    }
 
 
     cout << "Is this information correct? <Y/N>";
@@ -475,6 +951,8 @@ void bookingScript(){
     myfile << tel<< "\n";
     myfile << creditcard << "\n";
     myfile << creditcardType << "\n";
+    myfile << roomType << "\n";
+    myfile << roomnumber << "\n";
 
     myfile.close();
     MemberForm();
@@ -653,13 +1131,13 @@ system ("cls");
         whitetext();
  
         file_ptr.close();
-        };
+        
       cout << "\n\tShow Bill payment? <Y/N>";
     cin >> confirm;
     if (confirm == 'y' || confirm == 'Y'){
         Showbillpaymentscript();
         };
-   
+    };
 }    
 
 void priceList(){}
