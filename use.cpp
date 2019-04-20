@@ -536,9 +536,9 @@ system ("cls");
     ifstream file_ptr;
     cout << "\n\t\t\t\tSaved Bookings:\n\n";
     system ("dir/b *.booking");
-    cout << "\n\nPlease type the name of the booking you\n";
-    cout << "     wish to open as it appears above OR\n";
-    cout << "     type z (Lower case) to return to main menu: ";
+    cout << "\n\n\tPlease type the name of the booking you\n";
+    cout << "\twish to open as it appears above OR\n";
+    cout << "\ttype z (Lower case) to return to main menu: ";
     cin.ignore();
     gets (filename);
     if (filename[0]  != 'z'){
@@ -573,13 +573,12 @@ system ("cls");
         whitetext();
  
         file_ptr.close();
-        };
       cout << "\n\tShow Bill payment? <Y/N>";
     cin >> confirm;
     if (confirm == 'y' || confirm == 'Y'){
         Showbillpaymentscript();
         };
-   
+    };
 }    
 
 void priceList(){}
