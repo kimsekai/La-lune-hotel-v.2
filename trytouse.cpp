@@ -15,7 +15,6 @@ void bluetext(){SetConsoleTextAttribute(hConsole, 11);  };
 void yellowtext(){SetConsoleTextAttribute(hConsole, 14);  };
 void darktext(){SetConsoleTextAttribute(hConsole, 8);  };
 
-
 string Servicecharges1("*****");
 string Servicecharges2("*****");
 string Servicecharges3("*****");
@@ -56,6 +55,14 @@ string tel("00");
 int creditcardSelection;
 string creditcardType("*****");
 string creditcard("****"); 
+
+int stdroom[3] = {101,102,103} ;
+int delroom[3] = {201,202,203} ;
+int famroom[3] = {301,302,303} ;
+int roomSelection;
+string roomType("*****");
+int roomnumberSelection;
+string roomnumber("*****");
 
 void resetMemberDetails(){
     name = "*****";
@@ -591,7 +598,14 @@ void bookingForm(){
     if (TotalServicecharges != 00.00){greentext();};
     cout << TotalServicecharges;
     calculateall();
-  
+    whitetext();
+    cout << "\n\t\t         Room Type: ";
+    if (roomType != "*****"){greentext();};
+    cout << roomType;
+    whitetext();
+    cout << "\n\t\t         Room Number: ";
+    if (roomnumber != "*****"){greentext();};
+    cout << roomnumber;
     whitetext();
     cout << "\n\t\t          Total Price: ";
     if (TotalPrice != 00.00){greentext();};
@@ -771,7 +785,7 @@ void bookingScript(){
         }
         } while (   breakfast != 'Y' && breakfast != 'y' && breakfast != 'N' && breakfast != 'n');
     bookingForm();
-  
+
     cout << "\tPlease enter  Start Date(DD): ";
     cin >> day;
     while (cin.fail() || day > 31 || day< 1){//Catches invalid date
@@ -817,7 +831,76 @@ void bookingScript(){
         cin >> year2;}
      bookingForm(); 
     
-
+    cout << "\tWhat kind of room do you want?\n";
+    cout << "\t1 - Standard Studio\n";
+    cout << "\t2 - Deluxe Studio\n";
+    cout << "\t3 - Standard Family\n";
+    cout << "\t> : ";
+    cin >> roomSelection;
+    switch(roomSelection){
+        case 1 :
+            roomType = "Standard Studio";
+            break;
+        case 2 :
+            roomType = "Deluxe Studio";
+            break;
+        case 3 :
+            roomType = "Standard Family";
+            break;
+    }
+    bookingForm(); 
+    cout << "What number of room do you want?\n";
+    if(roomType == "Standard Studio"){
+        cout << "\t1 - 101\n\t2 - 102\n\t3 - 103\n";
+        cout << "\t> : ";
+        cin >> roomnumberSelection;
+        switch(roomnumberSelection){
+            case 1 :
+                roomnumber = "101";
+                break;
+            case 2 :
+                roomnumber = "102";
+                break;
+            case 3 :
+                roomnumber = "103";
+                break;
+        }
+        bookingForm(); 
+    }
+    if(roomType == "Deluxe Studio"){
+        cout << "\t1 - 201\n\t2 - 202\n\t3 - 203\n";
+        cout << "\t> : ";
+        cin >> roomnumberSelection;
+        switch(roomnumberSelection){
+            case 1 :
+                roomnumber = "201";
+                break;
+            case 2 :
+                roomnumber = "202";
+                break;
+            case 3 :
+                roomnumber = "203";
+                break;
+        }
+        bookingForm(); 
+    }
+    if(roomType == "Standard Family"){
+        cout << "\t1 - 301\n\t2 - 302\n\t3 - 303\n";
+        cout << "\t> : ";
+        cin >> roomnumberSelection;
+        switch(roomnumberSelection){
+            case 1 :
+                roomnumber = "301";
+                break;
+            case 2 :
+                roomnumber = "302";
+                break;
+            case 3 :
+                roomnumber = "303";
+                break;
+        }
+        bookingForm(); 
+    }
 
 
     cout << "Is this information correct? <Y/N>";
@@ -868,6 +951,8 @@ void bookingScript(){
     myfile << tel<< "\n";
     myfile << creditcard << "\n";
     myfile << creditcardType << "\n";
+    myfile << roomType << "\n";
+    myfile << roomnumber << "\n";
 
     myfile.close();
     MemberForm();
