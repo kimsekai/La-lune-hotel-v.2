@@ -61,8 +61,6 @@ int delroom[3] = {201,202,203} ;
 int famroom[3] = {301,302,303} ;
 int roomSelection;
 string roomType("*****");
-int roomnumberSelection;
-string roomnumber("*****");
 
 void resetMemberDetails(){
     name = "*****";
@@ -545,20 +543,15 @@ void calculateall(){
     validDay(day, month, year);
     getData2(day2 , month2,  year2); 
     validDay2(day2, month2, year2);
-    if(validDay2(day2, month2, year2) &&validDay(day, month, year)== true)
+    if(validDay2(day2, month2, year2) && validDay(day, month, year)== true)
                 {   
                     whitetext();
                     cout<<"\n\t\t          For how many nights: ";
                     greentext();
-                    if(dayOfYear(day, month, year)>=1 and dayOfYear(day, month, year)<=364 )
-                    cout<<dayOfYear2(day2, month2, year2)-dayOfYear(day, month, year)<<" night";
-                    if(dayOfYear(day, month, year)==365){
-                    cout<<dayOfYear2(day2, month2, year2)<<" night";    
+                    if(dayOfYear(day, month, year)>=1 and dayOfYear(day, month, year)<=364 ){
+                    DAY = dayOfYear2(day2, month2, year2)-dayOfYear(day, month, year);
+                    cout<<DAY<<" night";
                     }
-                    if(dayOfYear(day, month, year)==366){
-                    cout<<dayOfYear2(day2, month2, year2)<<" night";    
-                    }
-
                 }
     
 }
@@ -602,10 +595,6 @@ void bookingForm(){
     cout << "\n\t\t         Room Type: ";
     if (roomType != "*****"){greentext();};
     cout << roomType;
-    whitetext();
-    cout << "\n\t\t         Room Number: ";
-    if (roomnumber != "*****"){greentext();};
-    cout << roomnumber;
     whitetext();
     cout << "\n\t\t          Total Price: ";
     if (TotalPrice != 00.00){greentext();};
@@ -849,59 +838,6 @@ void bookingScript(){
             break;
     }
     bookingForm(); 
-    cout << "What number of room do you want?\n";
-    if(roomType == "Standard Studio"){
-        cout << "\t1 - 101\n\t2 - 102\n\t3 - 103\n";
-        cout << "\t> : ";
-        cin >> roomnumberSelection;
-        switch(roomnumberSelection){
-            case 1 :
-                roomnumber = "101";
-                break;
-            case 2 :
-                roomnumber = "102";
-                break;
-            case 3 :
-                roomnumber = "103";
-                break;
-        }
-        bookingForm(); 
-    }
-    if(roomType == "Deluxe Studio"){
-        cout << "\t1 - 201\n\t2 - 202\n\t3 - 203\n";
-        cout << "\t> : ";
-        cin >> roomnumberSelection;
-        switch(roomnumberSelection){
-            case 1 :
-                roomnumber = "201";
-                break;
-            case 2 :
-                roomnumber = "202";
-                break;
-            case 3 :
-                roomnumber = "203";
-                break;
-        }
-        bookingForm(); 
-    }
-    if(roomType == "Standard Family"){
-        cout << "\t1 - 301\n\t2 - 302\n\t3 - 303\n";
-        cout << "\t> : ";
-        cin >> roomnumberSelection;
-        switch(roomnumberSelection){
-            case 1 :
-                roomnumber = "301";
-                break;
-            case 2 :
-                roomnumber = "302";
-                break;
-            case 3 :
-                roomnumber = "303";
-                break;
-        }
-        bookingForm(); 
-    }
-
 
     cout << "Is this information correct? <Y/N>";
     cin >> confirmationSave;
@@ -952,7 +888,6 @@ void bookingScript(){
     myfile << creditcard << "\n";
     myfile << creditcardType << "\n";
     myfile << roomType << "\n";
-    myfile << roomnumber << "\n";
 
     myfile.close();
     MemberForm();
@@ -1079,7 +1014,51 @@ void Showbillpayment(){
     cout<<"\n\t\t\t\tChiang Mai,Chiang Mai  ";
     cout<<"\n\t\t\t\t    Tel :-023658966 ";
     cout<<"\n--------------------------------------------------------------------------------\n";
- 	
+ 	cout<<"\n      Customer name : "<<name<<" "<<surname;     
+    cout<<"\n                              ";     
+    cout<<"\n      Stayed for "<<DAY<<" days";     
+    cout<<"\n      Room charges(Per day)    : "<<"100";     
+    cout<<"\n      Room charges(Total)    : "<<"1000";     
+     
+    cout<<"\n      Total service hanges charges   : "<<"140";     
+    cout<<"\n                          Ser.tax % = 5%";     
+    cout<<"\n                          Ser.tax   ="<<"25000";     
+    cout<<"\n      Bill Amount >>>>>> Rs "<<"25000";     
+    cout<<"\n                              ";     
+    cout<<"\n      ***THANK YOU FOR COMING***";     
+    cout<<"\n      Visit Again !"; 
+    /*char filename [100];
+    ifstream file_ptr;
+    cout << "\n\t\t\t\tSaved Bookings:\n\n";
+    system ("dir/b *.booking");
+    gets (filename);
+    if (filename[0]  != 'z'){
+ 
+    file_ptr.open(filename,ios::in);
+   // char in_char;
+        getline(file_ptr, name);
+        getline(file_ptr, surname);
+ 
+        getline(file_ptr, creditcard); 
+        getline(file_ptr, creditcardType);
+        getline(file_ptr, Servicecharges1);
+        getline(file_ptr, Servicecharges2);
+        getline(file_ptr, Servicecharges3);
+        getline(file_ptr, Servicecharges4);
+        file_ptr >> TotalServicecharges;
+        file_ptr >>checkinDate;
+        file_ptr >>checkinMonth;
+        file_ptr >> checkoutDate;
+        file_ptr >> checkoutMonth;
+        file_ptr >> checkoutYear;
+        file_ptr >> TotalPrice;
+ 
+        bookingForm();
+        greentext();
+        whitetext();
+ 
+        file_ptr.close();
+    }*/
     system ("pause");
 }  
 void Showbillpaymentscript(){
@@ -1119,11 +1098,13 @@ system ("cls");
         getline(file_ptr, Servicecharges3);
         getline(file_ptr, Servicecharges4);
         file_ptr >> TotalServicecharges;
-        file_ptr >>checkinDate;
-        file_ptr >>checkinMonth;
-        file_ptr >> checkoutDate;
-        file_ptr >> checkoutMonth;
-        file_ptr >> checkoutYear;
+        file_ptr >>day;
+        file_ptr >>month;
+        file_ptr >>year;
+        file_ptr >>day2;
+        file_ptr >>month2;
+        file_ptr >>year2;
+        file_ptr>>DAY;
         file_ptr >> TotalPrice;
  
         bookingForm();
