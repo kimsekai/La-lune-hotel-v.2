@@ -19,17 +19,15 @@ string Servicecharges1("*****");
 string Servicecharges2("*****");
 string Servicecharges3("*****");
 string Servicecharges4("*****");
-int checkinDate(00);
-int checkinMonth(00);
-int checkinYear(00);
-int checkoutDate(00);
-int checkoutMonth(00);
-int checkoutYear(00);
+int day(00);
+int month(00);
+int year(00);
+int day2(00);
+int month2(00);
+int year2(00);
 int DAY(00);
 double TotalPrice(0.00);
 double TotalServicecharges(0.00);
-int day, month, year;
-int day2,month2,year2;
 const int january = 31;
 const int february = 28;
 const int leapYearFeb = 29;
@@ -438,7 +436,7 @@ int dayOfYear2 (int day2, int month2, int year2)
 
         if((month2 == 4) && (year2 > 1582))
         {
-            dayTotal2 = january + february + march + day;
+            dayTotal2 = january + february + march + day2;
 
             if((month2 == 4) && (year2 > 1582) && (leapYear(year2)))
             {
@@ -548,10 +546,12 @@ void calculateall(){
                     whitetext();
                     cout<<"\n\t\t          For how many nights: ";
                     greentext();
-                    if(dayOfYear(day, month, year)>=1 and dayOfYear(day, month, year)<=364 ){
                     DAY = dayOfYear2(day2, month2, year2)-dayOfYear(day, month, year);
+                    if(DAY>=0 and DAY<=1)
                     cout<<DAY<<" night";
-                    }
+                    else if(DAY>1)
+                     cout<<DAY<<" nights";
+                    
                 }
     
 }
@@ -859,8 +859,13 @@ void bookingScript(){
     myfile << Servicecharges3 << "\n";
     myfile << Servicecharges4 << "\n";
     myfile << TotalServicecharges << "\n";
-    
-   
+    myfile << day << "\n";
+    myfile << month << "\n";
+    myfile << year << "\n";
+    myfile << day2 << "\n";
+    myfile << month2 << "\n";
+    myfile << year2 << "\n";
+    myfile << DAY << "\n";
     myfile.close();
     bookingForm();
     greentext();
