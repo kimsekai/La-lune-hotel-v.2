@@ -29,6 +29,65 @@ void displayRoom(Room);
 class Room rooms[max];
 int count=0;
 
+Room Room::addRoom(int rno){
+class Room room;
+room.roomNumber=rno;
+cout<<"\nType AC/Non-AC (A/N) : ";
+cin>>room.ac;
+cout<<"\nType Comfort (S/N) : ";
+cin>>room.type;
+cout<<"\nType Size (B/S) : ";
+cin>>room.stype;
+cout<<"\nDaily Rent : ";
+cin>>room.rent;
+room.status=0;
+
+cout<<"\n Room Added Successfully!";
+getch();
+return room;
+}
+void Room::searchRoom(int rno)
+{
+int i,found=0;
+for(i=0;i<count;i++)
+{
+if(rooms[i].roomNumber==rno)
+{
+found=1;
+break;
+}
+}
+if(found==1)
+{
+cout<<"Room Details\n";
+if(rooms[i].status==1)
+{
+cout<<"\nRoom is Reserved";
+}
+else
+{
+cout<<"\nRoom is available";
+}
+displayRoom(rooms[i]);
+getch();
+}
+else
+{
+cout<<"\nRoom not found";
+getch();
+}
+}
+
+void Room::displayRoom(Room tempRoom)
+{
+cout<<"\nRoom Number: \t"<<tempRoom.roomNumber;
+cout<<"\nType AC/Non-AC (A/N) "<<tempRoom.ac;
+cout<<"\nType Comfort (S/N) "<<tempRoom.type;
+cout<<"\nType Size (B/S) "<<tempRoom.stype;
+cout<<"\nRent: "<<tempRoom.rent;
+}
+
+
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 void greentext(){SetConsoleTextAttribute(hConsole, 2);  };
 void whitetext(){SetConsoleTextAttribute(hConsole, 15);  };
@@ -619,10 +678,6 @@ void bookingForm(){
     if (roomType != "*****"){greentext();};
     cout << roomType;
     whitetext();
-    cout << "\n\t\t          number of room: ";
-    if (numberof != "*****"){greentext();};
-    cout << roomType;
-    whitetext();
     cout << "\n\t\t          Total Price: ";
     if (TotalPrice != 00.00){greentext();};
     TotalPrice=TotalServicecharges;
@@ -633,7 +688,56 @@ void bookingForm(){
 
 }; 
 
+void manageRooms()
+{
+class Room room;
+int opt,rno,i,flag=0;
+char ch;
+do
+{
 
+system("cls");
+bookingForm(); 
+cout<<"\n### Manage Rooms ###";
+cout<<"\n1. Add Room";
+cout<<"\n2. Search Room";
+cout<<"\n3. Back to Main Menu";
+cout<<"\n\nEnter Option: ";
+cin>>opt;
+
+
+//switch statement
+switch(opt){
+case 1:
+    cout<<"\nEnter Room Number: ";
+    cin>>rno;
+    i=0;
+    for(i=0;i<count;i++){
+    if(rooms[i].roomNumber==rno){
+    flag=1;}
+    }
+    if(flag==1){
+    cout<<"\nRoom Number is Present.\nPlease enter unique Number";
+    flag=0;
+    getch();}
+    else{
+    rooms[count]=room.addRoom(rno);
+    count++;}
+    break;
+case 2:
+    cout<<"\nEnter room number: ";
+    cin>>rno;
+    room.searchRoom(rno);
+    break;
+    case 3:
+    //nothing to do
+    break;
+    default:
+    cout<<"\nPlease Enter correct option";
+break;
+}
+}while(opt!=3);
+}
 void bookingScript(){
     string saveYN;
     double discount;
@@ -866,7 +970,7 @@ void bookingScript(){
             roomType = "Standard Family";
             break;
     }
-    
+    manageRooms();
     bookingForm(); 
     cout <<"Calculate Price is"<< TotalPrice;
     cout << "Is this information correct? <Y/N>";
@@ -905,6 +1009,8 @@ void bookingScript(){
     system ("pause");
  
 }
+
+
  void savefile(){
     string saveFileName;
     stringstream out;
@@ -932,25 +1038,6 @@ void bookingScript(){
     system ("pause");
 }
 
-Room Room::addRoom(int rno){
-class Room room;
-bookingScript();
-bookingForm(); 
-room.roomNumber=rno;
-cout<<"\nType AC/Non-AC (A/N) : ";
-cin>>room.ac;
-cout<<"\nType Comfort (S/N) : ";
-cin>>room.type;
-cout<<"\nType Size (B/S) : ";
-cin>>room.stype;
-cout<<"\nDaily Rent : ";
-cin>>room.rent;
-room.status=0;
-
-cout<<"\n Room Added Successfully!";
-getch();
-return room;
-}
 
 
 void memberDetails(){
