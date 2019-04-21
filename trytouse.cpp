@@ -85,6 +85,7 @@ void resetBookingDetails(){
     day2= 00;
     month2 = 00;
     year2 = 00;
+    TotalPrice= 0.00;
 }
 void MemberForm(){
     system ("cls");
@@ -598,6 +599,7 @@ void bookingForm(){
     whitetext();
     cout << "\n\t\t          Total Price: ";
     if (TotalPrice != 00.00){greentext();};
+    TotalPrice=TotalServicecharges;
     cout << TotalPrice;
     whitetext();
     cout << "\n\t________________________________________________________________\n\n";
@@ -837,8 +839,9 @@ void bookingScript(){
             roomType = "Standard Family";
             break;
     }
+    
     bookingForm(); 
-
+    cout <<"Calculate Price is"<< TotalPrice;
     cout << "Is this information correct? <Y/N>";
     cin >> confirmationSave;
     if (confirmationSave == 'y' || confirmationSave == 'Y') {
