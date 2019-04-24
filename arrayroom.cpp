@@ -4,8 +4,6 @@
 #include <sstream>
 #include <fstream>
 #include <string>
-#include <conio.h>
-#define max 100
 
 using namespace std;
 
@@ -58,92 +56,8 @@ string creditcard("****");
 
 int roomSelection;
 string roomType("*****");
-string roomnumber("*****");
+string roomnum("*****");
 int roomnumberSelection;
-
-
-class Room
-{
-public:
-char type;
-char stype;
-char ac;
-int roomNumber;
-int rent;
-int status;
-
-class Room addRoom(int);
-void searchRoom(int);
-void displayRoom(Room);
-};
-class HotelMgnt:protected Room
-{
-public:
-void checkIn();
-void getAvailRoom();
-void checkOut(int);
-};
-
-//Global Declarations
-class Room rooms[max];
-int count=0;
-
-Room Room::addRoom(int rno){
-class Room room;
-room.roomNumber=rno;
-cout<<"\nType AC/Non-AC (A/N) : ";
-cin>>room.ac;
-cout<<"\nType Comfort (S/N) : ";
-cin>>room.type;
-cout<<"\nType Size (B/S) : ";
-cin>>room.stype;
-cout<<"\nDaily Rent : ";
-cin>>room.rent;
-room.status=0;
-
-cout<<"\n Room Added Successfully!";
-getch();
-return room;
-}
-
-void Room::searchRoom(int rno){
-int i,found=0;
-for(i=0;i<count;i++)
-{
-    if(rooms[i].roomNumber==rno)
-    {
-        found=1;
-        break;
-    }
-}
-if(found==1)
-{
-    cout<<"Room Details\n";
-    if(rooms[i].status==1)
-    {
-        cout<<"\nRoom is Reserved";
-    }
-    else
-    {
-        cout<<"\nRoom is available";
-    }
-        displayRoom(rooms[i]);
-        getch();
-}
-else
-{
-    cout<<"\nRoom not found";
-    getch();
-}
-}
-
-void Room::displayRoom(Room tempRoom){
-cout<<"\nRoom Number: \t"<<tempRoom.roomNumber;
-cout<<"\nType AC/Non-AC (A/N) "<<tempRoom.ac;
-cout<<"\nType Comfort (S/N) "<<tempRoom.type;
-cout<<"\nType Size (B/S) "<<tempRoom.stype;
-cout<<"\nRent: "<<tempRoom.rent;
-}
 
 void resetMemberDetails(){
     name = "*****";
@@ -627,18 +541,15 @@ void calculateall(){
     validDay(day, month, year);
     getData2(day2 , month2,  year2); 
     validDay2(day2, month2, year2);
-    if(validDay2(day2, month2, year2) && validDay(day, month, year)== true)
-                {   
-                    whitetext();
-                    cout<<"\n\t\t          For how many nights: ";
-                    greentext();
-                    DAY = dayOfYear2(day2, month2, year2)-dayOfYear(day, month, year);
-                    if(DAY>=0 and DAY<=1)
-                    cout<<DAY<<" night";
-                    else if(DAY>1)
-                     cout<<DAY<<" nights";
+    if(validDay2(day2, month2, year2) && validDay(day, month, year)== true){   
+        whitetext();
+        cout<<"\n\t\t          For how many nights: ";
+        greentext();
+        DAY = dayOfYear2(day2, month2, year2)-dayOfYear(day, month, year);
+        if(DAY>=0 and DAY<=1) cout<<DAY<<" night";
+        else if(DAY>1) cout<<DAY<<" nights";
                     
-                }
+    }
     
 }
 void bookingForm(){
@@ -663,7 +574,7 @@ void bookingForm(){
     if (creditcardType  != "*****"){greentext();};
     cout << creditcardType ;
     whitetext();
-    cout << "\n\t\t                Service charges: ";
+    cout << "\n\t\t         Service charges: ";
     if (Servicecharges1 != "*****"){greentext();};
     cout << Servicecharges1;
     if (Servicecharges2 != "*****"){greentext();};
@@ -673,7 +584,7 @@ void bookingForm(){
     if (Servicecharges4 != "*****"){greentext();};
     cout <<"\n\t\t                                 " << Servicecharges4;
     whitetext();
-    cout << "\n\t\t          Total Service charges: ";
+    cout << "\n\t\t         Total Service charges: ";
     if (TotalServicecharges != 00.00){greentext();};
     cout << TotalServicecharges;
     calculateall();
@@ -683,10 +594,10 @@ void bookingForm(){
     cout << roomType;
     whitetext();
     cout << "\n\t\t         Room Number: ";
-    if (roomnumber != "*****"){greentext();};
-    cout << roomnumber;
+    if (roomnum != "*****"){greentext();};
+    cout << roomnum;
     whitetext();
-    cout << "\n\t\t          Total Price: ";
+    cout << "\n\t\t         Total Price: ";
     if (TotalPrice != 00.00){greentext();};
     TotalPrice=TotalServicecharges;
     cout << TotalPrice;
@@ -696,218 +607,6 @@ void bookingForm(){
 
 }; 
 
-void manageRooms()
-{
-class Room room;
-int opt,rno,i,flag=0;
-char ch;
-do
-{
-
-system("cls");
-bookingForm(); 
-cout<<"\n### Manage Rooms ###";
-cout<<"\n1. Add Room";
-cout<<"\n2. Search Room";
-cout<<"\n3. Back to Main Menu";
-cout<<"\n\nEnter Option: ";
-cin>>opt;
-
-
-//switch statement
-switch(opt){
-case 1:
-    cout<<"\nEnter Room Number: ";
-    cin>>roomnumber;
-    i=0;
-    for(i=0;i<count;i++){
-    if(rooms[i].roomNumber==rno){
-    flag=1;}
-    }
-    if(flag==1){
-    cout<<"\nRoom Number is Present.\nPlease enter unique Number";
-    flag=0;
-    getch();}
-    else{
-    rooms[count]=room.addRoom(rno);
-    count++;}
-    break;
-case 2:
-    cout<<"\nEnter room number: ";
-    cin>>rno;
-    room.searchRoom(rno);
-    break;
-    case 3:
-    //nothing to do
-    break;
-    default:
-    cout<<"\nPlease Enter correct option";
-break;
-}
-}while(opt!=3);
-}
-void HotelMgnt::checkIn()
-{
-int i,found=0,rno;
-
-class Room room;
-cout<<"\nEnter Room number : ";
-cin>>rno;
-for(i=0;i<count;i++)
-{
-if(rooms[i].roomNumber==rno)
-{
-found=1;
-break;
-}
-}
-if(found==1)
-{
-if(rooms[i].status==1)
-{
-cout<<"\nRoom is already Booked";
-getch();
-return;
-}
-
-
-rooms[i].status=1;
-
-cout<<"\n Customer Checked-in Successfully..";
-getch();
-}
-}
-void HotelMgnt::getAvailRoom()
-{
-int i,found=0;
-for(i=0;i<count;i++)
-{
-if(rooms[i].status==0)
-{
-displayRoom(rooms[i]);
-cout<<"\n\nPress enter for next room";
-found=1;
-getch();
-}
-}
-if(found==0)
-{
-cout<<"\nAll rooms are reserved";
-getch();
-}
-}
-void HotelMgnt::checkOut(int roomNum)
-{
-int i,found=0,days,rno;
-float billAmount=0;
-for(i=0;i<count;i++)
-{
-if(rooms[i].status==1 && rooms[i].roomNumber==roomNum)
-{
-//rno = rooms[i].roomNumber;
-found=1;
-//getch();
-break;
-}
-}
-if(found==1)
-{
-cout<<"\nEnter Number of Days:\t";
-cin>>days;
-billAmount=days * rooms[i].rent;
-
-rooms[i].status=0;
-}
-getch();
-}
-
-void returnroom(){
-    {
-class HotelMgnt hm;
-int i,j,opt,rno;
-char ch;
-char pname[100];
-
-system("cls");
-
-do
-{
-system("cls");
-bookingForm();
-cout<<"######## Hotel Management #########\n";
-cout<<"\n1. Manage Rooms";
-cout<<"\n2. Check-In Room";
-cout<<"\n3. Available Rooms";
-cout<<"\n4. Search Customer";
-cout<<"\n5. Check-Out Room";
-cout<<"\n6. Guest Summary Report";
-cout<<"\n7. Exit";
-cout<<"\n\nEnter Option: ";
-cin>>opt;
-switch(opt)
-{
-case 1:
-manageRooms();
-break;
-case 2:
-if(count==0)
-{
-cout<<"\nRooms data is not available.\nPlease add the rooms first.";
-getch();
-}
-else
-hm.checkIn();
-break;
-case 3:
-if(count==0)
-{
-cout<<"\nRooms data is not available.\nPlease add the rooms first.";
-getch();
-}
-else
-hm.getAvailRoom();
-break;
-case 4:
-if(count==0)
-{
-cout<<"\nRooms are not available.\nPlease add the rooms first.";
-getch();
-}
-else
-{
-cout<<"Enter Customer Name: ";
-cin>>pname;
-
-}
-break;
-case 5:
-if(count==0)
-{
-cout<<"\nRooms are not available.\nPlease add the rooms first.";
-getch();
-}
-else
-{
-cout<<"Enter Room Number : ";
-cin>>rno;
-hm.checkOut(rno);
-}
-break;
-case 6:
-
-break;
-case 7:
-cout<<"\nTHANK YOU! FOR USING SOFTWARE";
-break;
-default:
-cout<<"\nPlease Enter correct option";
-break;
-}
-}while(opt!=7);
-
-getch();
-}
-}
 void bookingScript(){
     string saveYN;
     double discount;
@@ -1080,7 +779,7 @@ void bookingScript(){
 
     cout << "\tPlease enter  Start Date(DD): ";
     cin >> day;
-    while (cin.fail() || day > 31 || day< 1){//Catches invalid date
+    while (cin.fail() || day > 31 || day< 1){
         cin.clear(); cin.ignore();
         cout << "\n\tPlease enter a valid date (1-31): ";
         cin >> day;
@@ -1089,14 +788,14 @@ void bookingScript(){
     bookingForm();
     cout << "\tPlease enter Start Month(MM): ";
     cin >>month;
-    while (cin.fail() || month > 12 ||month< 1){//Catches invalid month
+    while (cin.fail() || month > 12 ||month< 1){
         cin.clear(); cin.ignore();
         cout << "\n\tPlease enter a valid month (1-12): ";
         cin >> month;}
      bookingForm();
     cout << "\tPlease enter  Start Year(YY): ";
     cin >> year ;
-    while (cin.fail() || year > 9999 || year < 1000){//Catches invalid year
+    while (cin.fail() || year > 9999 || year < 1000){
         cin.clear(); cin.ignore();
         cout << "\n\tPlease enter a valid Year : ";
         cin >> year ;}
@@ -1121,7 +820,7 @@ void bookingScript(){
         cin.clear(); cin.ignore();
         cout << "\n\tPlease enter a valid year : ";
         cin >> year2;}
-     bookingForm(); 
+    bookingForm(); 
     
     cout << "\tWhat kind of room do you want?\n";
     cout << "\t1 - Standard Studio\n";
@@ -1140,8 +839,74 @@ void bookingScript(){
             roomType = "Standard Family";
             break;
     }
-    returnroom();
-    bookingForm(); 
+    bookingForm();
+    string a[3] = {"101","102","103"},b[3] = {"201","202","203"},c[3] = {"301","302","303"};
+    char type;
+    string roomnum;
+     cout << "1   ";
+ for(int i = 0 ; i<3 ; i++){
+  cout << a[i] << " ";
+ }
+ 
+ cout << "\n2   ";
+ for(int j = 0 ; j<3 ; j++){
+  cout << b[j] << " ";
+ }
+ 
+ cout << "\n3   ";
+ for(int k = 0 ; k<3 ; k++){
+  cout << c[k] << " ";
+ }
+ 
+ cout << "\ntype  ";
+ cin >> type;
+ if( toupper(type) == '1'){
+  cout << "roomnumber : ";
+  cin >> roomnum;
+  for(int o = 0; o<3 ; o++ ){
+   if(a[o] == roomnum){
+   a[o] = "XXX";
+  } 
+  }
+  
+ }
+ 
+  if( toupper(type) == '2'){
+  cout << "roomnumber : ";
+  cin >> roomnum;
+  for(int s = 0; s<3 ; s++ ){
+   if(b[s] == roomnum){
+   b[s] = "XXX";
+  } 
+  }
+  
+ }
+ 
+  if( toupper(type) == '3'){
+  cout << "roomnumber : ";
+  cin >> roomnum;
+  for(int f = 0; f<3 ; f++ ){
+   if(c[f] == roomnum){
+   c[f] = "XXX";
+  } 
+  }
+  
+ }
+ cout << "1   ";
+ for(int q = 0 ; q<3 ; q++){
+  cout << a[q] << " ";
+ }
+ 
+ cout << "\n2   ";
+ for(int w = 0 ; w<3 ; w++){
+  cout << b[w] << " ";
+ }
+ 
+ cout << "\n3   ";
+ for(int e = 0 ; e<3 ; e++){
+  cout << c[e] << " ";
+ }
+
     cout <<"Calculate Price is"<< TotalPrice;
     cout << "Is this information correct? <Y/N>";
     cin >> confirmationSave;
@@ -1152,7 +917,7 @@ void bookingScript(){
     out << name << " " << surname << ".booking";
     saveBookingName = out.str();
  
-    ofstream myfile;                                  //Save file structure
+    ofstream myfile;                                  
     myfile.open (saveBookingName.c_str(), ios::out);
     myfile << name << "\n";
     myfile << surname << "\n";
@@ -1170,7 +935,7 @@ void bookingScript(){
     myfile << month2 << "\n";
     myfile << year2 << "\n";
     myfile << DAY << "\n";
-    myfile << roomnumber << "\n";
+    myfile << roomnum << "\n";
     myfile.close();
     bookingForm();
     greentext();
@@ -1180,8 +945,6 @@ void bookingScript(){
     system ("pause");
  
 }
-
-
  void savefile(){
     string saveFileName;
     stringstream out;
@@ -1208,8 +971,6 @@ void bookingScript(){
     whitetext();
     system ("pause");
 }
-
-
 
 void memberDetails(){
     string saveYN;
