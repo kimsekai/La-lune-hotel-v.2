@@ -58,6 +58,7 @@ int roomSelection;
 string roomType("*****");
 string roomnumber("*****");
 int roomnumberSelection;
+double roomcost(00.00);
 
 void resetMemberDetails(){
     name = "*****";
@@ -167,7 +168,7 @@ bool validYear (int year)
  void getData1 (int& day, int& month, int& year)
 {
    whitetext();
-    cout << "\n\t\t          Check in Date: ";
+    cout << "\n\t\t         Check in Date: ";
     if (day != 00){greentext();};
     cout << day << "/" << month << "/" << year;   
 }
@@ -364,7 +365,7 @@ bool validYear2 (int year2)
  void getData2 (int& day2, int& month2, int& year2)
 {
    whitetext();
-    cout << "\n\t\t          Check out Date: ";
+    cout << "\n\t\t         Check out Date: ";
     if (day2 != 00){greentext();};
     cout << day2 << "/" << month2<< "/" << year2;   
 }
@@ -543,7 +544,7 @@ void calculateall(){
     validDay2(day2, month2, year2);
     if(validDay2(day2, month2, year2) && validDay(day, month, year)== true){   
         whitetext();
-        cout<<"\n\t\t          For how many nights: ";
+        cout<<"\n\t\t         For how many nights: ";
         greentext();
         DAY = dayOfYear2(day2, month2, year2)-dayOfYear(day, month, year);
         if(DAY>=0 and DAY<=1) cout<<DAY<<" night";
@@ -555,7 +556,7 @@ void calculateall(){
 void bookingForm(){
     system ("cls");
     bluetext();
-    cout << "\t\t\t      Booking Details\n";
+    cout << "\n\t\t\t      Booking Details\n";
     whitetext();
     cout << "\t________________________________________________________________\n\n";
     cout << "\tBooking Form   \t";
@@ -578,11 +579,11 @@ void bookingForm(){
     if (Servicecharges1 != "*****"){greentext();};
     cout << Servicecharges1;
     if (Servicecharges2 != "*****"){greentext();};
-    cout <<"\n\t\t                                 " << Servicecharges2;
+    cout <<"\n\t\t                          " << Servicecharges2;
     if (Servicecharges3 != "*****"){greentext();};
-    cout <<"\n\t\t                                 " << Servicecharges3;
+    cout <<"\n\t\t                          " << Servicecharges3;
     if (Servicecharges4 != "*****"){greentext();};
-    cout <<"\n\t\t                                 " << Servicecharges4;
+    cout <<"\n\t\t                          " << Servicecharges4;
     whitetext();
     cout << "\n\t\t         Total Service charges: ";
     if (TotalServicecharges != 00.00){greentext();};
@@ -597,9 +598,13 @@ void bookingForm(){
     if (roomnumber != "*****"){greentext();};
     cout << roomnumber;
     whitetext();
+    cout << "\n\t\t         Room Cost: ";
+    if (roomcost != 00.00){greentext();};
+    cout << roomcost;
+    whitetext();
     cout << "\n\t\t         Total Price: ";
     if (TotalPrice != 00.00){greentext();};
-    TotalPrice=TotalServicecharges;
+    TotalPrice=TotalServicecharges+roomcost;
     cout << TotalPrice;
     whitetext();
     cout << "\n\t________________________________________________________________\n\n";
@@ -821,7 +826,6 @@ void bookingScript(){
         cout << "\n\tPlease enter a valid year : ";
         cin >> year2;}
     bookingForm(); 
-    
     cout << "\tWhat kind of room do you want?\n";
     cout << "\t1 - Standard Studio\n";
     cout << "\t2 - Deluxe Studio\n";
@@ -831,12 +835,24 @@ void bookingScript(){
     switch(roomSelection){
         case 1 :
             roomType = "Standard Studio";
+            if(creditcardType == "No") roomcost = 600*DAY;
+            if(creditcardType == "GSB") roomcost = 540*DAY;
+            if(creditcardType == "KTB") roomcost = 510*DAY;
+            if(creditcardType == "SCB") roomcost = 480*DAY;
             break;
         case 2 :
             roomType = "Deluxe Studio";
+            if(creditcardType == "No") roomcost = 900*DAY;
+            if(creditcardType == "GSB") roomcost = 810*DAY;
+            if(creditcardType == "KTB") roomcost = 765*DAY;
+            if(creditcardType == "SCB") roomcost = 720*DAY;
             break;
         case 3 :
             roomType = "Standard Family";
+            if(creditcardType == "No") roomcost = 1200*DAY;
+            if(creditcardType == "GSB") roomcost = 1080*DAY;
+            if(creditcardType == "KTB") roomcost = 1020*DAY;
+            if(creditcardType == "SCB") roomcost = 960*DAY;
             break;
     }
     bookingForm();
